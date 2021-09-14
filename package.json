@@ -1,10 +1,11 @@
 {
-  "name": "yelpcamp",
+  "name": "communityrises",
   "version": "1.0.0",
-  "description": "We are going to be building YelpCamp aka Community Rises",
+  "description": "We are going to be building Community Rises",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "author": "AbdulRahman Al Sharqawy",
   "license": "ISC",
