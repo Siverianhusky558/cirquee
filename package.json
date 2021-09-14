@@ -1,7 +1,7 @@
 {
-  "name": "communityrises",
+  "name": "yelpcamp",
   "version": "1.0.0",
-  "description": "We are going to be building Community Rises",
+  "description": "We are going to be building YelpCamp aka Community Rises",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
