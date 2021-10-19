@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@mapbox/mapbox-sdk": "^0.13.1",
+    "bootstrap-icons": "^1.6.0",
     "cloudinary": "^1.26.3",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^3.2.0",
@@ -22,7 +23,9 @@
     "express-session": "^1.17.2",
     "helmet": "^4.6.0",
     "joi": "^17.4.0",
+    "locus": "^2.0.4",
     "method-override": "^3.0.0",
+    "moment": "^2.29.1",
     "mongoose": "^5.12.13",
     "multer": "^1.4.3",
     "multer-storage-cloudinary": "^4.0.0",

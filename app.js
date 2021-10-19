@@ -17,12 +17,12 @@ const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require('helmet');
 
 const userRoutes = require('./routes/users');
-const campgroundRoutes = require('./routes/campgrounds');
+const postRoutes = require('./routes/posts');
 const reviewRoutes = require('./routes/reviews');
 
 const MongoDBStore = require('connect-mongo')(session);
-
-const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
+// 'mongodb://localhost:27017/community-rises'
+const dbUrl = process.env.DB_URL;
 
 mongoose.connect(dbUrl, {
   useNewUrlParser: true,
@@ -128,6 +128,8 @@ app.use(
   })
 );
 
+app.locals.moment = require('moment');
+
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
@@ -135,17 +137,26 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-app.use((req, res, next) => {
-  console.log(req.query);
+app.use(async (req, res, next) => {
   res.locals.currentUser = req.user;
+  if (req.user) {
+    try {
+      let user = await User.findById(req.user._id)
+        .populate('notifications', null, { isRead: false })
+        .exec();
+      res.locals.notifications = user.notifications.reverse();
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
   res.locals.success = req.flash('success');
   res.locals.error = req.flash('error');
   next();
 });
 
 app.use('/', userRoutes);
-app.use('/campgrounds', campgroundRoutes);
-app.use('/campgrounds/:id/reviews', reviewRoutes);
+app.use('/posts', postRoutes);
+app.use('/posts/:id/reviews', reviewRoutes);
 
 app.get('/', (req, res) => {
   res.render('home');

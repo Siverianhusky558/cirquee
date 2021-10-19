@@ -3,19 +3,25 @@
 
 <div class="row">
   <div class="col-6">
-    <div id="campgroundCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div id="postCarousel" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
-        <% campground.images.forEach((img, i)=> { %>
+        <% if (!post.images.length) { %>
+        <img
+          class="d-block w-100"
+          src="https://res.cloudinary.com/dgzorrtut/image/upload/v1631695201/Community%20Rises/AbdulRahman_Disappointed_agqpjn.png"
+          alt=""
+        />
+        <% } %> <% post.images.forEach((img, i)=> { %>
         <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
           <img src="<%= img.url %>" class="d-block w-100" alt="" />
         </div>
         <% }); %>
       </div>
-      <% if(campground.images.length> 1) { %>
+      <% if(post.images.length> 1) { %>
       <button
         class="carousel-control-prev"
         type="button"
-        data-bs-target="#campgroundCarousel"
+        data-bs-target="#postCarousel"
         data-bs-slide="prev"
       >
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -24,7 +30,7 @@
       <button
         class="carousel-control-next"
         type="button"
-        data-bs-target="#campgroundCarousel"
+        data-bs-target="#postCarousel"
         data-bs-slide="next"
       >
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
@@ -34,34 +40,39 @@
     </div>
     <div class="card mb-3">
       <div class="card-body">
-        <h5 class="card-title"><%= campground.title %></h5>
-        <p class="card-text"><%= campground.description %></p>
+        <h5 class="card-title"><%= post.title %></h5>
+        <p class="card-text"><%= post.description %></p>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item text-muted"><%= campground.location %></li>
+        <li class="list-group-item text-muted"><%= post.location %></li>
         <li class="list-group-item text-muted">
-          Submitted by <%= campground.author.username %>
+          Submitted by
+          <a href="/users/<%= post.author._id %>"
+            ><%= post.author.username %></a
+          >
         </li>
-        <li class="list-group-item">$<%= campground.price %>/night</li>
       </ul>
-      <% if(currentUser && campground.author.equals(currentUser._id)) { %>
+      <% if(currentUser && post.author.equals(currentUser._id) || currentUser &&
+      currentUser.isAdmin) { %>
       <div class="card-body">
         <a
           style="color: #fff"
           class="card-link btn btn-info"
-          href="/campgrounds/<%= campground._id %>/edit"
+          href="/posts/<%= post._id %>/edit"
           >Edit</a
         >
         <form
           class="d-inline"
-          action="/campgrounds/<%= campground._id %>?_method=DELETE"
+          action="/posts/<%= post._id %>?_method=DELETE"
           method="POST"
         >
           <button class="btn btn-danger">Delete</button>
         </form>
       </div>
       <% } %>
-      <div class="card-footer text-muted">2 days ago</div>
+      <div class="card-footer text-muted">
+        <%= moment(post.createdAt).fromNow() %>
+      </div>
     </div>
   </div>
   <div class="col-6">
@@ -69,7 +80,7 @@
     <% if(currentUser) { %>
     <h2>Leave A Review</h2>
     <form
-      action="/campgrounds/<%= campground._id %>/reviews"
+      action="/posts/<%= post._id %>/reviews"
       method="POST"
       class="mb-3 validated-form"
       novalidate
@@ -140,9 +151,10 @@
     <h2>Leave A Review?</h2>
     <a class="link-warning" href=" /login">Login</a>
     <br /><br /><br /><br />
-    <% } %> <% for(let review of campground.reviews) { %>
+    <% } %> <% for(let review of post.reviews) { %>
     <div class="card mb-3">
-      <% if(currentUser && review.author.equals(currentUser._id)) { %>
+      <% if(currentUser && review.author.equals(currentUser._id) || currentUser
+      && currentUser.isAdmin) { %>
       <div style="text-align: right" class="dropend">
         <button
           style="background: none; border: none; font-size: 22px"
@@ -159,7 +171,7 @@
             <form
               style="display: inline-block"
               method="POST"
-              action="/campgrounds/<%= campground._id %>/reviews/<%= review._id %>?_method=DELETE"
+              action="/posts/<%= post._id %>/reviews/<%= review._id %>?_method=DELETE"
             >
               <button
                 style="
@@ -189,7 +201,7 @@
               </button>
             </form>
             <a
-              href="/campgrounds/<%= campground._id %>/reviews/<%= review._id %>/edit"
+              href="/posts/<%= post._id %>/reviews/<%= review._id %>/edit"
               style="color: orange; font-size: 12px; text-decoration: none"
               ><svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -210,6 +222,22 @@
       </div>
       <% } %>
       <div class="card-body">
+        <% if(review.author.avatar.length) { %>
+        <a href="/users/<%= review.author._id %>"
+          ><img
+            style="width: 10rem; height: 10rem; border-radius: 50%"
+            src="<%= review.author.avatar[0].url %>"
+            alt=""
+        /></a>
+        <% } else { %>
+        <a href="/users/<%= review.author._id %>">
+          <img
+            style="width: 10rem; height: 10rem; border-radius: 50%"
+            src="https://res.cloudinary.com/dgzorrtut/image/upload/v1632932220/Community%20Rises/defaultUserPhoto_fdswcf.jpg"
+            alt=""
+          />
+        </a>
+        <% } %>
         <p class="starability-result" data-rating="<%=review.rating%>">
           Rated: <%review.rating%> stars
         </p>
@@ -227,6 +255,7 @@
           <%= review.author.username %> rated <%= review.rating %> star!
         </h6>
         <% } %>
+        <small><%= moment(review.createdAt).fromNow() %></small>
       </div>
     </div>
     <% } %>
@@ -235,7 +264,7 @@
 
 <script>
   const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
-  const campground = <%- JSON.stringify(campground) %>
+  const post = <%- JSON.stringify(post) %>
 </script>
 
 <script type="text/javascript" src="/javascripts/showPageMap.js"></script>

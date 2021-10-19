@@ -1,0 +1,35 @@
+<% layout('layouts/boilerplate') %>
+<div class="container">
+  <% for(let user of users) { %>
+  <div class="container-item">
+    <div class="item-pfp">
+      <a href="/users/<%= user._id %>"
+        ><img
+          id="user-pfp"
+          src="<%= user.avatar[0].url %>"
+          alt="user profile photo"
+      /></a>
+    </div>
+    <span class="divider"></span>
+    <div class="item-name">
+      <span class="text-muted"
+        ><a href="/users/<%= user._id %> ">@<%= user.username %></a>
+      </span>
+      <p><%= user.firstName %> <%= user.lastName %></p>
+      <p>
+        <a href="mailto:<%= user.email %>"><%= user.email %></a>
+      </p>
+    </div>
+    <span class="divider"></span>
+    <div class="item-follow">
+      <% if(currentUser && user.equals(currentUser._id)) { %>
+      <h4 class="text-muted">You</h4>
+      <% } else { %>
+      <a class="btn btn-info" href="/follow/<%= user._id %>"
+        >Follow <%= user.username %>
+      </a>
+      <% } %>
+    </div>
+  </div>
+  <% } %>
+</div>

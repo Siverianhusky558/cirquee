@@ -1,0 +1,75 @@
+<% layout('layouts/boilerplate') %> <% if(currentUser && currentUser.isAdmin) {
+%>
+<h1>You're an admin!</h1>
+<% } %>
+<h1 style="text-align: center">Post Navigator</h1>
+<div
+  style="border-radius: 10px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7)"
+  id="cluster-map"
+></div>
+<h1>What others have posted</h1>
+<div style="height: 30px"></div>
+<% for(let post of posts) { %>
+<div
+  class="card mb-3"
+  style="max-width: 600px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5)"
+>
+  <% if(post.author.avatar.length) { %>
+  <a href="/users/<%= post.author._id %>"
+    ><img
+      style="width: 9rem; height: 9rem; border-radius: 50%"
+      src="<%= post.author.avatar[0].url %>"
+      alt=""
+  /></a>
+  <% } else { %>
+  <a href="/users/<%= post.author._id %>">
+    <img
+      style="width: 9rem; height: 9rem; border-radius: 50%"
+      src="https://res.cloudinary.com/dgzorrtut/image/upload/v1632932220/Community%20Rises/defaultUserPhoto_fdswcf.jpg"
+      alt=""
+    />
+  </a>
+  <% } %>
+  <h4 style="display: inline"><%= post.author.username %> posted this!</h4>
+  <% if(post.images.length) { %>
+  <a href="/posts/<%= post._id %>"
+    ><img
+      style="width: 595px; height: 27rem"
+      src="<%= post.images[0].url %>"
+      class="card-img-top"
+      alt=""
+  /></a>
+  <% } else { %>
+  <a href="/posts/<%= post._id %>"
+    ><img
+      class="card-img-top"
+      style="width: 595px; height: 27rem"
+      src="https://res.cloudinary.com/dgzorrtut/image/upload/v1631695201/Community%20Rises/AbdulRahman_Disappointed_agqpjn.png"
+      alt=""
+  /></a>
+  <% } %>
+  <div class="card-body">
+    <h5 class="card-title"><%= post.title %></h5>
+    <p class="card-text"><%= post.description %></p>
+    <p class="card-text">
+      <small class="text-muted"><%= post.location %></small>
+      <small style="display: block; float: right" class="text-muted"
+        >Posted <%= moment(post.createdAt).fromNow() %>
+      </small>
+    </p>
+    <a
+      style="float: right"
+      href="/posts/<%= post._id %>"
+      class="btn btn-primary"
+      >Read More</a
+    >
+  </div>
+</div>
+<% } %>
+
+<script>
+  const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+  const posts = { features: <%- JSON.stringify(posts) %>}
+</script>
+
+<script type="text/javascript" src="/javascripts/clusterMap.js"></script>

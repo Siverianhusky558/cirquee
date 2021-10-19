@@ -1,49 +1,39 @@
-const Campground = require('../models/campground');
+const Post = require('../models/post');
 const Review = require('../models/review');
 
 module.exports.createReview = async (req, res) => {
-  const campground = await Campground.findById(req.params.id);
+  const post = await Post.findById(req.params.id);
   const review = new Review(req.body.review);
   review.author = req.user._id;
-  campground.reviews.push(review);
+  post.reviews.push(review);
   await review.save();
-  await campground.save();
-  req.flash('success', 'Created new review');
-  res.redirect(`/campgrounds/${campground._id}`);
+  await post.save();
+  req.flash('success', 'Successfully created a new review!');
+  res.redirect(`/posts/${post._id}`);
 };
-
-// module.exports.renderEditForm = async (req, res) => {
-//   const { reviewId } = req.params;
-//   const review = await Review.findById(reviewId);
-//   if (!review) {
-//     req.flash('error', 'Cannot find that review!');
-//     return res.redirect('/campgrounds');
-//   }
-//   res.render('reviews/edit', { campground: req.params.id, review: review });
-// };
 
 module.exports.renderEditForm = async (req, res) => {
   const { id, reviewId } = req.params;
-  const campground = await Campground.findById(id);
+  const post = await Post.findById(id);
   const review = await Review.findById(reviewId);
   if (!review) {
-    req.flash('error', 'Cannot find that review!');
-    return res.redirect('/campgrounds');
+    req.flash('error', 'Cannot find that review');
+    return res.redirect('/posts');
   }
-  res.render('reviews/edit', { campground, review });
+  res.render('reviews/edit', { post, review });
 };
 
 module.exports.updateReview = async (req, res) => {
   const { id, reviewId } = req.params;
   const review = await Review.findByIdAndUpdate(reviewId, req.body.review);
   req.flash('success', 'Successfully updated review!');
-  res.redirect(`/campgrounds/${id}`);
+  res.redirect(`/posts/${id}`);
 };
 
 module.exports.deleteReview = async (req, res) => {
   const { id, reviewId } = req.params;
-  await Campground.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
+  await Post.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
   await Review.findByIdAndDelete(reviewId);
-  req.flash('success', 'Successfully deleted review');
-  res.redirect(`/campgrounds/${id}`);
+  req.flash('success', 'Successfully deleted review!');
+  res.redirect(`/posts/${id}`);
 };

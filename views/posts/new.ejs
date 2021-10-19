@@ -1,10 +1,10 @@
 <% layout('layouts/boilerplate') %>
 <div class="row">
-  <h1 class="text-center">New Campground</h1>
+  <h1 class="text-center">New Post</h1>
   <div class="col-md-6 offset-md-3">
     <form
       autocomplete="off"
-      action="/campgrounds"
+      action="/posts"
       method="POST"
       novalidate
       class="validated-form"
@@ -13,11 +13,10 @@
       <div class="mb-3">
         <label class="form-label" for="title">Title</label>
         <input
-          placeholder="Ibn Al Kalb"
           class="form-control"
           type="text"
           id="title"
-          name="campground[title]"
+          name="post[title]"
           required
         />
         <div class="valid-feedback">Looks Good!</div>
@@ -25,30 +24,13 @@
       <div class="mb-3">
         <label class="form-label" for="location">Location</label>
         <input
-          placeholder="AlKelab, Kalbenia"
           class="form-control"
           type="text"
           id="location"
-          name="campground[location]"
+          name="post[location]"
           required
         />
         <div class="valid-feedback">Looks Good!</div>
-      </div>
-      <div class="mb-3">
-        <label for="price" class="form-label">Campground Price</label>
-        <div class="input-group">
-          <span class="input-group-text" id="price-label">$</span>
-          <input
-            name="campground[price]"
-            type="text"
-            class="form-control"
-            placeholder="25.2"
-            aria-label="Price"
-            aria-describedby="price-label"
-            required
-          />
-          <div class="valid-feedback">Looks Good!</div>
-        </div>
       </div>
       <div class="mb-3">
         <label class="form-label" for="description">Description</label>
@@ -56,8 +38,7 @@
           class="form-control"
           type="text"
           id="description"
-          name="campground[description]"
-          placeholder="This dog was found wandering alone in the streets with a bottle of Vodka. Please send help"
+          name="post[description]"
           required
         ></textarea>
         <div class="valid-feedback">Looks Good!</div>
@@ -74,9 +55,9 @@
       </div>
 
       <div class="mb-3">
-        <button class="btn btn-success" type="submit">Add Campground</button>
+        <button class="btn btn-success" type="submit">Create Post</button>
       </div>
     </form>
-    <a href="/campgrounds">All Campgrounds</a>
+    <a href="/posts">Back To All Posts</a>
   </div>
 </div>

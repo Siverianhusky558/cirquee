@@ -2,10 +2,10 @@
 
 <div class="container d-flex justify-content-center align-items-center mb-5">
   <div class="row">
-    <div class="col-md-6 offset-md-3 col-xl-4 offset-xl-4">
+    <div class="col-md-12">
       <div class="card shadow">
         <img
-          src="https://images.unsplash.com/photo-1571863533956-01c88e79957e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80"
+          src="https://images.unsplash.com/photo-1556155092-490a1ba16284?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8cmVnaXN0ZXJ8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60"
           alt=""
           class="card-img-top"
         />
@@ -16,6 +16,7 @@
             action="/register"
             method="POST"
             class="validated-form"
+            enctype="multipart/form-data"
             novalidate
           >
             <div class="mb-3">
@@ -42,6 +43,48 @@
               <div class="valid-feedback">Looks good!</div>
             </div>
             <div class="mb-3">
+              <label for="firstName" class="form-label">First Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="firstName"
+                name="firstName"
+                required
+              />
+              <div class="valid-feedback">Looks good!</div>
+            </div>
+            <div class="mb-3">
+              <label for="lastName" class="form-label">Last Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="lastName"
+                name="lastName"
+                required
+              />
+              <div class="valid-feedback">Looks good!</div>
+            </div>
+            <!-- <div class="mb-3">
+            <label for="bio" class="form-label">Bio</label>
+              <textarea
+                class="form-control"
+                id="bio"
+                name="biography">
+              </textarea>
+              <div class="valid-feedback">Looks good!</div>
+            </div> -->
+            <div class="mb-3">
+              <span for="avatar" class="form-label"
+                >Add Profile Photo <span class="text-muted">(optional)</span></label
+              >
+              <input
+                class="form-control"
+                type="file"
+                id="avatar"
+                name="avatar"
+              />
+            </div>
+            <div class="mb-3">
               <label for="password" class="form-label">Password</label>
               <input
                 type="password"
@@ -52,7 +95,17 @@
               />
               <div class="valid-feedback">Looks good!</div>
             </div>
-            <button class="btn btn-success btn-block">Register</button>
+            <div class="mb-3">
+              <label for="adminCode" class="form-label">Admin Code <span class="text-muted">(Don't have it? JUST LEAVE IT!)</span></label>
+              <input
+                type="text"
+                class="form-control"
+                id="adminCode"
+                name="adminCode"
+              />
+              <div class="valid-feedback">Looks good!</div>
+            </div>
+            <button class="btn btn-success block">Register</button>
           </form>
         </div>
       </div>
