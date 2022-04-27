@@ -4,6 +4,7 @@
     class="validated-form"
     action="/users/<%= user._id %>?_method=PUT"
     method="POST"
+    autocomplete="off"
     novalidate
   >
     <h1 class="text-center">Edit Your Profile</h1>
@@ -50,7 +51,10 @@
       >
       <div class="valid-feedback">Looks good!</div>
     </div> -->
-    <% if(currentUser && currentUser.isAdmin) { %> <% } else { %>
+    <% if(currentUser && currentUser.isAdmin) { %>
+    <p class="text-muted">Already an admin!</p>
+    <input name="adminCode" value="" type="text" style="display: none" />
+    <% } else { %>
     <div class="mb-3">
       <label class="form-label" for="adminCode"
         >Wanna become an admin? Type the code
@@ -59,6 +63,7 @@
       <div class="valid-feedback">Looks good!</div>
     </div>
     <% } %>
+    <!-- <p style="color: red; display: none" id="notif">Invalid admin code</p> -->
     <button
       style="display: block; width: 100%; color: #fff"
       class="btn btn-warning"

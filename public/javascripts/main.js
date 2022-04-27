@@ -5,3 +5,5 @@ for (let input of editInputs) {
     input.checked = true;
   }
 }
+
+// export {isArabic};

@@ -11,48 +11,31 @@
 <div style="height: 30px"></div>
 <% for(let post of posts) { %>
 <div
-  class="card mb-3"
-  style="max-width: 600px; box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5)"
+  class="post-container card mb-3" style="box-shadow: 2px 2px 10px rgba(255, 0, 255, 0.5)"
 >
-  <% if(post.author.avatar.length) { %>
   <a href="/users/<%= post.author._id %>"
     ><img
       style="width: 9rem; height: 9rem; border-radius: 50%"
       src="<%= post.author.avatar[0].url %>"
       alt=""
   /></a>
-  <% } else { %>
-  <a href="/users/<%= post.author._id %>">
-    <img
-      style="width: 9rem; height: 9rem; border-radius: 50%"
-      src="https://res.cloudinary.com/dgzorrtut/image/upload/v1632932220/Community%20Rises/defaultUserPhoto_fdswcf.jpg"
-      alt=""
-    />
-  </a>
-  <% } %>
-  <h4 style="display: inline"><%= post.author.username %> posted this!</h4>
   <% if(post.images.length) { %>
+  <h4 style="display: inline"><%= post.author.username %> posted this!</h4>
   <a href="/posts/<%= post._id %>"
     ><img
       style="width: 595px; height: 27rem"
       src="<%= post.images[0].url %>"
-      class="card-img-top"
+      class="post-image"
       alt=""
   /></a>
   <% } else { %>
-  <a href="/posts/<%= post._id %>"
-    ><img
-      class="card-img-top"
-      style="width: 595px; height: 27rem"
-      src="https://res.cloudinary.com/dgzorrtut/image/upload/v1631695201/Community%20Rises/AbdulRahman_Disappointed_agqpjn.png"
-      alt=""
-  /></a>
+      <h4 style="display:inline;"><%= post.author.username %> says:</h4>
   <% } %>
   <div class="card-body">
     <h5 class="card-title"><%= post.title %></h5>
-    <p class="card-text"><%= post.description %></p>
+    <p class="desc card-text"><%= post.description %></p>
     <p class="card-text">
-      <small class="text-muted"><%= post.location %></small>
+      <small class="loc text-muted"><%= post.location %></small>
       <small style="display: block; float: right" class="text-muted"
         >Posted <%= moment(post.createdAt).fromNow() %>
       </small>
@@ -66,6 +49,43 @@
   </div>
 </div>
 <% } %>
+
+<script>
+  function isArabic(text) {
+  var arabic = /[\u0600-\u06FF]/;
+  result = arabic.test(text);
+  return result;
+  }
+  
+  const tit = document.querySelectorAll(".card-title")
+  const tex = document.querySelectorAll(".card-text");
+  const desc = document.querySelectorAll(".desc");
+  const locs = document.querySelectorAll(".loc");
+  
+  desc.forEach((text) => {
+	if(text.innerText.length >= 100){
+		text.innerText = text.innerText.slice(0,100)+"..."
+	}
+  })
+
+  tit.forEach((h1) => {
+    if(isArabic(h1.innerText)){
+      h1.setAttribute("dir","rtl");
+    }else{
+      h1.setAttribute("dir","ltr");
+    }
+  });
+
+  tex.forEach((p, idx) => {
+    if(isArabic(p.innerText)){
+      p.setAttribute("dir","rtl");
+      locs[idx].setAttribute("dir","rtl");
+    }else{
+      p.setAttribute("dir","ltr");
+      locs[idx].setAttribute("dir","ltr");
+    }
+  });
+</script>
 
 <script>
   const mapToken = '<%-process.env.MAPBOX_TOKEN%>';

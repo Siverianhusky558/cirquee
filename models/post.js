@@ -47,7 +47,9 @@ const PostSchema = new Schema(
 
 PostSchema.virtual('properties.popUpMarkup').get(function () {
   return `
-  <strong><a href="/posts/${this._id}">${this.title}</a></strong>
+  <strong><a href="/posts/${
+    this._id
+  }">${this.title.substring(0, 20)}...</a></strong>
   <p>${this.description.substring(0, 20)}...</p>
   `;
 });

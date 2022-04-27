@@ -4,21 +4,25 @@
   <div class="container-item">
     <div class="item-pfp">
       <a href="/users/<%= user._id %>"
-        ><img
+        >
+        <img
           id="user-pfp"
           src="<%= user.avatar[0].url %>"
           alt="user profile photo"
-      /></a>
+      />
+    </a>
     </div>
     <span class="divider"></span>
     <div class="item-name">
-      <span class="text-muted"
+      <span class="user-tag text-muted"
         ><a href="/users/<%= user._id %> ">@<%= user.username %></a>
       </span>
+      <span class="resp-hide">
       <p><%= user.firstName %> <%= user.lastName %></p>
       <p>
         <a href="mailto:<%= user.email %>"><%= user.email %></a>
       </p>
+      </spanc>
     </div>
     <span class="divider"></span>
     <div class="item-follow">

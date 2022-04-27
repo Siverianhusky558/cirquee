@@ -1,6 +1,11 @@
 const User = require('../models/user');
 const Notification = require('../models/notification');
 
+module.exports.usersIndex = async (req, res) => {
+  const users = await User.find({});
+  res.render('users/index', { users });
+};
+
 module.exports.getUserById = async (req, res) => {
   try {
     const { userId } = req.params;
@@ -87,8 +92,12 @@ module.exports.editUser = async (req, res) => {
   user.email = req.body.email;
   if (req.body.adminCode === 'smell2good') {
     user.isAdmin = true;
+  } else if (req.body.adminCode === '') {
+  } else {
+    req.flash('error', 'Admin code is incorrect!');
   }
   await user.save();
+  req.flash('success', 'Successfully updated profile!');
   res.redirect(`/users/${user._id}`);
 };
 
@@ -107,6 +116,10 @@ module.exports.register = async (req, res, next) => {
       avatar,
     });
     if (!req.file) {
+      user.avatar = {
+        url: "https://res.cloudinary.com/dgzorrtut/image/upload/v1650717015/Community%20Rises/love_ct0bqm.png",
+        filename: "Community Rises/love_ct0bqm"
+      }
     } else {
       user.avatar = {
         url: req.file.path,
@@ -115,6 +128,9 @@ module.exports.register = async (req, res, next) => {
     }
     if (req.body.adminCode === 'smell2good') {
       user.isAdmin = true;
+    } else if (req.body.adminCode === '') {
+    } else {
+      req.flash('error', 'Admin code is incorrect!');
     }
     const registeredUser = await User.register(user, password);
     req.login(registeredUser, (err) => {

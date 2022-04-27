@@ -122,3 +122,81 @@ ul {
   height: 12rem;
   border-radius: 50%;
 }
+
+.post-container{
+  max-width: 600px;
+}
+
+.big-container{
+  display: none;
+}
+
+#showDesc{
+  display: none;
+}
+
+@media (max-width: 558px) {
+    .post-image {
+      transform: scale(0.6) translateX(-30%);
+    }
+
+    .big-container{
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      background-color: rgba(0, 0, 0, 0.6);
+      width: 30.5em;
+      height: 33em;
+      bottom:10em;
+      padding: 20em;
+      left:-0.75em;
+      z-index: 1000;
+    }
+
+    .text-cont{
+      background-color: #fff;
+      width: 300px;
+      padding: 40px;
+      border-radius: 30px;
+    }
+
+    .text-cont p button {
+      float: right;
+    }
+
+    .not-cont{
+      display:none;
+    }
+
+    #showDesc{
+      display: inline;
+    }
+
+    #notif-ring{
+      display: none;
+    }
+
+    #notif-link{
+      font-size: 12px;
+    }
+
+    .resp-hide{
+      display: none;
+    }
+
+    .item-follow{
+      display: none;
+    }
+
+    .divider:nth-of-type(2){
+      display: none;
+    }
+
+    .user-tag a{
+      position: absolute;
+      font-size: 30px;
+      top:2em;
+      left: 4em;
+    }
+}

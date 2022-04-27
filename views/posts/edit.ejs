@@ -93,3 +93,29 @@
   </div>
 </div>
 <script type="text/javascript" src="/javascripts/imgs.js"></script>
+<script>
+  function isArabic(text) {
+  var arabic = /[\u0600-\u06FF]/;
+  result = arabic.test(text);
+  return result;
+  }
+
+  const tit = document.getElementById("title");
+  const desc = document.getElementById("description");
+
+  tit.addEventListener("input", () => {
+  if(isArabic(tit.value)){
+    tit.setAttribute("dir", "rtl")    
+  } else {
+    tit.setAttribute("dir", "ltr")
+  }
+});
+
+desc.addEventListener("input", () => {
+  if(isArabic(desc.value)){
+    desc.setAttribute("dir", "rtl")
+  }else{
+    desc.setAttribute("dir","ltr");
+  }
+});
+</script>

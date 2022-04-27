@@ -61,3 +61,31 @@
     <a href="/posts">Back To All Posts</a>
   </div>
 </div>
+
+<script>
+// import { isArabic } from "../javascripts/main.js";
+const tit = document.getElementById("title");
+const desc = document.getElementById("description");
+
+function isArabic(text) {
+  var arabic = /[\u0600-\u06FF]/;
+  result = arabic.test(text);
+  return result;
+}
+
+tit.addEventListener("input", () => {
+  if(isArabic(tit.value)){
+    tit.setAttribute("dir", "rtl")    
+  } else {
+    tit.setAttribute("dir", "ltr")
+  }
+});
+
+desc.addEventListener("input", () => {
+  if(isArabic(desc.value)){
+    desc.setAttribute("dir", "rtl")
+  }else{
+    desc.setAttribute("dir","ltr");
+  }
+});
+</script>

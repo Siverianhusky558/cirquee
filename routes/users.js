@@ -9,10 +9,7 @@ const { storage } = require('../cloudinary');
 const upload = multer({ storage });
 const { isLoggedIn, isProfileAuthor } = require('../middleware');
 
-router.get('/users', async (req, res) => {
-  const users = await User.find({});
-  res.render('users/index', { users });
-});
+router.get('/users', users.usersIndex);
 
 router
   .route('/register')

@@ -1,18 +1,18 @@
-const Post = require('../models/post');
-const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
+const Post = require("../models/post");
+const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
 const mapBoxToken = process.env.MAPBOX_TOKEN;
 const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
-const { cloudinary } = require('../cloudinary');
-const User = require('../models/user');
-const Notification = require('../models/notification');
+const { cloudinary } = require("../cloudinary");
+const User = require("../models/user");
+const Notification = require("../models/notification");
 
 module.exports.index = async (req, res) => {
-  const posts = await Post.find({}).populate('popupText').populate('author');
-  res.render('posts/index', { posts });
+  const posts = await Post.find({}).populate("popupText").populate("author");
+  res.render("posts/index", { posts });
 };
 
 module.exports.renderNewForm = (req, res) => {
-  res.render('posts/new');
+  res.render("posts/new");
 };
 
 module.exports.createPost = async (req, res, next) => {
@@ -30,7 +30,7 @@ module.exports.createPost = async (req, res, next) => {
   }));
   post.author = req.user._id;
   await post.save();
-  let user = await User.findById(req.user._id).populate('followers').exec();
+  let user = await User.findById(req.user._id).populate("followers").exec();
   let newNotification = {
     username: req.user.username,
     postId: post.id,
@@ -40,31 +40,31 @@ module.exports.createPost = async (req, res, next) => {
     follower.notifications.push(notification);
     follower.save();
   }
-  req.flash('success', 'Successfully made a new post!');
+  req.flash("success", "Successfully made a new post!");
   res.redirect(`/posts/${post._id}`);
 };
 
 module.exports.getPostById = async (req, res) => {
   const post = await Post.findById(req.params.id)
     .populate({
-      path: 'reviews',
+      path: "reviews",
       populate: {
-        path: 'author',
+        path: "author",
       },
     })
-    .populate('author');
+    .populate("author");
   console.log(post);
-  res.render('posts/show', { post });
+  res.render("posts/show", { post });
 };
 
 module.exports.renderEditForm = async (req, res) => {
   const { id } = req.params;
   const post = await Post.findById(id);
   if (!post) {
-    req.flash('error', 'Cannot find that post');
-    return res.redirect('/posts');
+    req.flash("error", "Cannot find that post");
+    return res.redirect("/posts");
   }
-  res.render('posts/edit', { post });
+  res.render("posts/edit", { post });
 };
 
 module.exports.updatePost = async (req, res) => {
@@ -83,7 +83,7 @@ module.exports.updatePost = async (req, res) => {
       $pull: { images: { filename: { $in: req.body.deleteImages } } },
     });
   }
-  req.flash('success', 'Successfully updated post!');
+  req.flash("success", "Successfully updated post!");
   res.redirect(`/posts/${post._id}`);
 };
 
@@ -93,6 +93,6 @@ module.exports.deletePost = async (req, res) => {
   for (let img of deletedPost.images) {
     await cloudinary.uploader.destroy(img.filename);
   }
-  req.flash('success', 'Successfully deleted post');
-  res.redirect('/posts');
+  req.flash("success", "Successfully deleted post");
+  res.redirect("/posts");
 };

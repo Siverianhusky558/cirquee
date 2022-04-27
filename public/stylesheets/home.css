@@ -41,3 +41,19 @@ body {
 .btn-secondary:active {
   transform: scale(0.98);
 }
+
+@media (max-width: 568px) {
+
+  h1 {
+    font-size: 2em;
+    white-space: nowrap;
+  }
+
+  #first-line{
+    white-space: nowrap;
+  }
+
+  #resp-no{
+    display: none;
+  }  
+}

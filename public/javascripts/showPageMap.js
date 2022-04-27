@@ -12,7 +12,7 @@ new mapboxgl.Marker()
   .setLngLat(post.geometry.coordinates)
   .setPopup(
     new mapboxgl.Popup({ offset: 25 }).setHTML(
-      `<h3>${post.title}</h3><p>${post.location}</p>`
+      `<p>${post.location}</p>`
     )
   )
   .addTo(map);
