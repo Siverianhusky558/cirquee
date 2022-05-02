@@ -1,15 +1,16 @@
 <% layout('layouts/boilerplate') %>
 <link rel="stylesheet" href="/stylesheets/stars.css" />
+<link rel="stylesheet" href="/stylesheets/app.css">
 <div class="row">
   <div class="col-6 offset-3">
-    <h2>Edit your Review</h2>
+    <h2>Edit your Comment</h2>
     <form
       action="/posts/<%= post._id %>/reviews/<%= review._id %>?_method=PUT"
       method="POST"
       class="mb-3 validated-form"
       novalidate
     >
-      <fieldset class="starability-checkmark">
+      <fieldset class="stars starability-checkmark">
         <input
           type="radio"
           id="no-rate"
@@ -32,7 +33,7 @@
       </fieldset>
 
       <div class="mb-3">
-        <label class="form-label" for="body">Review Text</label>
+        <label class="form-label" for="body">Body:</label>
         <textarea
           class="form-control"
           name="review[body]"

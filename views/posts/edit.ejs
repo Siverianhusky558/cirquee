@@ -1,6 +1,6 @@
 <% layout('layouts/boilerplate') %>
 <div class="row">
-  <h1 class="text-center">Edit <%= post.title.substring(0, 20) %>...</h1>
+  <h1 class="text-center">Edit Post</h1>
   <div class="col-md-6 offset-md-3">
     <form
       action="/posts/<%=post._id%>?_method=PUT"
@@ -9,32 +9,6 @@
       class="validated-form"
       enctype="multipart/form-data"
     >
-      <div class="mb-3">
-        <label class="form-label" for="title">Title</label>
-        <input
-          class="form-control"
-          type="text"
-          id="title"
-          name="post[title]"
-          value="<%= post.title %>"
-          required
-        />
-        <div class="valid-feedback">Looks good!</div>
-      </div>
-      <div class="mb-3">
-        <label class="form-label" for="location">Location</label>
-        <input
-          class="form-control"
-          type="text"
-          id="location"
-          name="post[location]"
-          value="<%= post.location %>"
-          required
-          readonly
-        />
-        <small>You can't change me!</small>
-        <div class="valid-feedback">Looks good!</div>
-      </div>
       <div class="mb-3">
         <label class="form-label" for="description">Description</label>
         <textarea

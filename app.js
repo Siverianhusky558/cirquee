@@ -14,7 +14,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user');
 const mongoSanitize = require('express-mongo-sanitize');
-const helmet = require('helmet');
+// const helmet = require('helmet');
 
 const userRoutes = require('./routes/users');
 const postRoutes = require('./routes/posts');
@@ -24,7 +24,7 @@ const MongoDBStore = require('connect-mongo')(session);
 // 'mongodb://localhost:27017/community-rises'
 const dbUrl = process.env.DB_URL;
 
-mongoose.connect(dbUrl, {
+mongoose.connect("mongodb://localhost:27017/community-rises", {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true,
@@ -81,52 +81,54 @@ const sessionConfig = {
 
 app.use(session(sessionConfig));
 app.use(flash());
-app.use(helmet());
+// app.use(helmet());
 
-const scriptSrcUrls = [
-  'https://stackpath.bootstrapcdn.com/',
-  'https://api.tiles.mapbox.com/',
-  'https://api.mapbox.com/',
-  'https://kit.fontawesome.com/',
-  'https://cdnjs.cloudflare.com/',
-  'https://cdn.jsdelivr.net',
-];
-const styleSrcUrls = [
-  'https://kit-free.fontawesome.com/',
-  'https://stackpath.bootstrapcdn.com/',
-  'https://api.mapbox.com/',
-  'https://api.tiles.mapbox.com/',
-  'https://fonts.googleapis.com/',
-  'https://use.fontawesome.com/',
-  'https://cdn.jsdelivr.net',
-];
-const connectSrcUrls = [
-  'https://api.mapbox.com/',
-  'https://a.tiles.mapbox.com/',
-  'https://b.tiles.mapbox.com/',
-  'https://events.mapbox.com/',
-];
-const fontSrcUrls = [];
-app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: [],
-      connectSrc: ["'self'", ...connectSrcUrls],
-      scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
-      styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
-      workerSrc: ["'self'", 'blob:'],
-      objectSrc: [],
-      imgSrc: [
-        "'self'",
-        'blob:',
-        'data:',
-        'https://res.cloudinary.com/dgzorrtut/',
-        'https://images.unsplash.com/',
-      ],
-      fontSrc: ["'self'", ...fontSrcUrls],
-    },
-  })
-);
+// const scriptSrcUrls = [
+//   'https://stackpath.bootstrapcdn.com/',
+//   'https://api.tiles.mapbox.com/',
+//   'https://api.mapbox.com/',
+//   'https://kit.fontawesome.com/',
+//   'https://cdnjs.cloudflare.com/',
+//   'https://cdn.jsdelivr.net',
+// ];
+// const styleSrcUrls = [
+//   'https://kit-free.fontawesome.com/',
+//   'https://stackpath.bootstrapcdn.com/',
+//   'https://api.mapbox.com/',
+//   'https://api.tiles.mapbox.com/',
+//   'https://fonts.googleapis.com/',
+//   'https://use.fontawesome.com/',
+//   'https://cdn.jsdelivr.net',
+// ];
+// const connectSrcUrls = [
+//   'https://api.mapbox.com/',
+//   'https://a.tiles.mapbox.com/',
+//   'https://b.tiles.mapbox.com/',
+//   'https://events.mapbox.com/',
+// ];
+// const fontSrcUrls = [];
+// app.use(
+//   helmet.contentSecurityPolicy({
+//     directives: {
+//       defaultSrc: [
+//         'https://res.cloudinary.com/dgzorrtut/video/upload/v1651408175/Community%20Rises/Screencast_2022-05-01_15_28_51_mymuwk.mp4'
+//       ],
+//       connectSrc: ["'self'", ...connectSrcUrls],
+//       scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
+//       styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
+//       workerSrc: ["'self'", 'blob:'],
+//       objectSrc: [],
+//       imgSrc: [
+//         "'self'",
+//         'blob:',
+//         'data:',
+//         'https://res.cloudinary.com/dgzorrtut/',
+//         'https://images.unsplash.com/',
+//       ],
+//       fontSrc: ["'self'", ...fontSrcUrls],
+//     },
+//   })
+// );
 
 app.locals.moment = require('moment');
 
@@ -160,6 +162,10 @@ app.use('/posts/:id/reviews', reviewRoutes);
 
 app.get('/', (req, res) => {
   res.render('home');
+});
+
+app.get('/intro', (req,res) => {
+  res.render('intro');
 });
 
 app.all('*', (req, res, next) => {

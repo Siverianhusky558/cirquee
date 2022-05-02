@@ -2,14 +2,14 @@
 <link rel="stylesheet" href="/stylesheets/stars.css" />
 
 <div class="row">
-  <div class="col-6">
+  <div class="col-12">
     <div id="postCarousel" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
         <% if (!post.images.length) { %>
-        <div style="height:200px;" class="space"></div>
+        <div style="height:200px" class="space"></div>
         <% } %> <% post.images.forEach((img, i)=> { %>
         <div class="carousel-item <%= i === 0 ? 'active' : '' %>">
-          <img src="<%= img.url %>" class="d-block w-100" alt="" />
+          <img src="<%= img.url %>" class="d-block w-100 post-image" alt="post images" />
         </div>
         <% }); %>
       </div>
@@ -36,19 +36,11 @@
     </div>
     <div class="card mb-3">
       <div class="card-body">
-        <h5 class="card-title"><%= post.title %></h5>
-        <button id="showDesc" class="btn btn-lg btn-primary">Show Description</button>
-        <div class="not-cont">
+        <div>
             <p class="card-text"><%= post.description %></p>
-        </div>
-        <div class="big-container">
-          <div class="text-cont">
-            <p class="card-text"><%= post.description %><button class="close-btn btn btn-sm btn-info text-white">Close</button></p>
-          </div>
         </div>
       </div>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item text-muted"><%= post.location %></li>
         <li class="list-group-item text-muted">
           Submitted by
           <a href="/users/<%= post.author._id %>"
@@ -79,17 +71,17 @@
       </div>
     </div>
   </div>
-  <div class="col-6">
-    <div id="map"></div>
+</div>
+<div class="col-6">
     <% if(currentUser) { %>
-    <h2>Leave A Review</h2>
+    <h2>Leave A Comment</h2>
     <form
       action="/posts/<%= post._id %>/reviews"
       method="POST"
       class="mb-3 validated-form"
       novalidate
     >
-      <div class="mb-3">
+      <div class="stars mb-3">
         <fieldset class="starability-heartbeat">
           <input
             type="radio"
@@ -152,7 +144,7 @@
       <button type="submit" class="btn btn-success">Submit</button>
     </form>
     <% } else { %>
-    <h2>Leave A Review?</h2>
+    <h2>Leave A Comment?</h2>
     <a class="link-warning" href=" /login">Login</a>
     <br /><br /><br /><br />
     <% } %> <% for(let review of post.reviews) { %>
@@ -168,7 +160,7 @@
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          ...
+        ⋮
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
           <li>
@@ -227,7 +219,7 @@
         </ul>
       </div>
       <% } %>
-      <div class="card-body">
+      <div class="first-comment card-body">
         <a href="/users/<%= review.author._id %>"
           ><img
             style="width: 10rem; height: 10rem; border-radius: 50%"
@@ -254,9 +246,74 @@
         <small><%= moment(review.createdAt).fromNow() %></small>
       </div>
     </div>
+    <div class="post-review">
+      <div class="col">
+      <div class="card">
+        <img src="<%= review.author.avatar[0].url %>" class="card-img-top" alt="user profile image">
+        <div class="card-body">
+          <h5 class="card-title">
+            <% if(currentUser && review.author.equals(currentUser._id)) { %> You
+            said: <% } else { %> <%= review.author.username %> says: <% } %>
+          </h5>
+          <p class="card-text"><%= review.body %></p>
+          <% if(currentUser && review.author.equals(currentUser._id) || currentUser
+          && currentUser.isAdmin) { %>
+          <a
+              href="/posts/<%= post._id %>/reviews/<%= review._id %>/edit"
+              style="color: orange; font-size: 12px; text-decoration: none"
+              ><svg
+              style="color: orange;"
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-pencil"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"
+                />
+              </svg></a>
+              <form
+              style="display: inline-block"
+              method="POST"
+              action="/posts/<%= post._id %>/reviews/<%= review._id %>?_method=DELETE"
+            >
+              <button
+                style="
+                  color: red;
+                  font-size: 12px;
+                  background: none;
+                  border: none;
+                "
+              >
+                <svg
+                style="color:red"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-trash"
+                  viewBox="0 0 16 16"
+                >
+                  <path
+                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"
+                  />
+                </svg>
+              </button>
+            </form>
+            <% } %>
+        </div>
+        <small><%= moment(review.createdAt).fromNow() %></small>
+      </div>
+    </div>
+  </div>
     <% } %>
   </div>
-</div>
 
 <script>
   function isArabic(text) {
@@ -321,10 +378,3 @@
 
 
 </script>
-
-<script>
-  const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
-  const post = <%- JSON.stringify(post) %>
-</script>
-
-<script type="text/javascript" src="/javascripts/showPageMap.js"></script>

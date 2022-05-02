@@ -1,7 +1,4 @@
 const Post = require("../models/post");
-const mbxGeocoding = require("@mapbox/mapbox-sdk/services/geocoding");
-const mapBoxToken = process.env.MAPBOX_TOKEN;
-const geocoder = mbxGeocoding({ accessToken: mapBoxToken });
 const { cloudinary } = require("../cloudinary");
 const User = require("../models/user");
 const Notification = require("../models/notification");
@@ -16,14 +13,7 @@ module.exports.renderNewForm = (req, res) => {
 };
 
 module.exports.createPost = async (req, res, next) => {
-  const geoData = await geocoder
-    .forwardGeocode({
-      query: req.body.post.location,
-      limit: 1,
-    })
-    .send();
   const post = new Post(req.body.post);
-  post.geometry = geoData.body.features[0].geometry;
   post.images = req.files.map((f) => ({
     url: f.path,
     filename: f.filename,

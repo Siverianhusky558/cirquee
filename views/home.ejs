@@ -49,9 +49,22 @@
           >View Posts</a
         >
       </main>
+      
+
+      <div class="modal-container">
+        <h1>Welcome To Community Rises</h1>
+        <button class="close-btn btn btn-lg btn-dark">Close</button>
+        <p class="welcoming-text">
+          Welcome to the first yet the best family platform ever! Below you will know how to use the platform like a pro! 😎
+        </p>
+        <div class="video-container">
+          <h3>Get more familiar with the platform by watching the video below</h3>
+          <a class="video" href="/intro">Watch a Video</a>
+        </div>
+      </div>
 
       <footer class="mt-auto text-white-50">
-        <p>&copy; 2021 Community Rises</p>
+        <p>&copy; 2022 Community Rises</p>
       </footer>
     </div>
 
@@ -65,5 +78,13 @@
       integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
       crossorigin="anonymous"
     ></script>
+    <script>
+      const closeBtn = document.querySelector(".close-btn");
+      const modalContainer = document.querySelector(".modal-container");
+
+      closeBtn.addEventListener("click", () => {
+        modalContainer.style.display = "none";
+      });
+    </script>
   </body>
 </html>

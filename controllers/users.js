@@ -116,9 +116,17 @@ module.exports.register = async (req, res, next) => {
       avatar,
     });
     if (!req.file) {
-      user.avatar = {
-        url: "https://res.cloudinary.com/dgzorrtut/image/upload/v1650717015/Community%20Rises/love_ct0bqm.png",
-        filename: "Community Rises/love_ct0bqm"
+      const rander = Math.floor(Math.random() * 2)
+      if(rander == 1) {
+        user.avatar = {
+          url: "https://res.cloudinary.com/dgzorrtut/image/upload/v1650717015/Community%20Rises/love_ct0bqm.png",
+          filename: "Community Rises/love_ct0bqm"
+        }
+      } else {
+        user.avatar = {
+          url: "https://res.cloudinary.com/dgzorrtut/image/upload/v1651096185/Community%20Rises/quds_tkxjyg.jpg",
+          filename: "Community Rises/quds_tkxjyg"
+        }
       }
     } else {
       user.avatar = {

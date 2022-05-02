@@ -15,21 +15,8 @@ const opts = { toJSON: { virtuals: true } };
 
 const PostSchema = new Schema(
   {
-    title: String,
     images: [ImageSchema],
-    geometry: {
-      type: {
-        String,
-        enum: ['Point'],
-        required: true,
-      },
-      coordinates: {
-        type: [Number],
-        required: true,
-      },
-    },
     description: String,
-    location: String,
     createdAt: { type: Date, default: Date.now },
     author: {
       type: Schema.Types.ObjectId,
@@ -44,15 +31,6 @@ const PostSchema = new Schema(
   },
   opts
 );
-
-PostSchema.virtual('properties.popUpMarkup').get(function () {
-  return `
-  <strong><a href="/posts/${
-    this._id
-  }">${this.title.substring(0, 20)}...</a></strong>
-  <p>${this.description.substring(0, 20)}...</p>
-  `;
-});
 
 PostSchema.post('findOneAndDelete', async function (doc) {
   if (doc) {
