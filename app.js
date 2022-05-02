@@ -24,7 +24,7 @@ const MongoDBStore = require('connect-mongo')(session);
 // 'mongodb://localhost:27017/community-rises'
 const dbUrl = process.env.DB_URL;
 
-mongoose.connect("mongodb://localhost:27017/community-rises", {
+mongoose.connect(dbUrl, {
   useNewUrlParser: true,
   useCreateIndex: true,
   useUnifiedTopology: true,

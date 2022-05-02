@@ -134,7 +134,7 @@ module.exports.register = async (req, res, next) => {
         filename: req.file.filename,
       };
     }
-    if (req.body.adminCode === 'smell2good') {
+    if (req.body.adminCode === 'smell2bad') {
       user.isAdmin = true;
     } else if (req.body.adminCode === '') {
     } else {
