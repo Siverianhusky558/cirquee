@@ -54,9 +54,10 @@ body {
   }
 
   .modal-container {
-    display: inline;
-    width: 100%;
-    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: left;
     padding: 100px;
     background-color: #fff;
     position: fixed;
@@ -65,41 +66,26 @@ body {
     color: #111;
   }
 
+  .second-container {
+    /* list-style: 1.5; */
+  }
+
   .vid-cool{
-    position: absolute;
     width:100%;
     height:300px;
-    top: 10em;
-    left: 0;
   }
 
   .modal-container h1 {
-    position: absolute;
-    top: 0;
-    left: 35%;
     font-size: 14px;
   }
 
   .modal-container .welcoming-text {
-    position: absolute;
-    top: 11em;
-    left: 0;
     font-size: 12px;
   }
 
-  .close-btn {
-    position: absolute;
-    top: 3em;
-    left: 8em;
-  }
 
   #resp-no{
     display: none;
-  }
-  .video-container {
-    position: absolute;
-    top: 15em;
-    left: 0;
   }
 
   .video {
