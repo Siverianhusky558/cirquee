@@ -48,6 +48,13 @@ body {
 
 @media (max-width: 568px) {
 
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
   h1 {
     font-size: 2em;
     white-space: nowrap;
@@ -64,10 +71,6 @@ body {
     top:0;
     left:0;
     color: #111;
-  }
-
-  .second-container {
-    /* list-style: 1.5; */
   }
 
   .vid-cool{
