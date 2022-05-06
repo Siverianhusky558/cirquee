@@ -61,6 +61,7 @@ body {
   }
 
   .modal-container {
+    transform: scale(0.8);
     display: flex;
     flex-direction: column;
     align-items: left;
@@ -70,12 +71,8 @@ body {
     position: fixed;
     top:0;
     left:0;
+    border-radius: 40px;
     color: #111;
-  }
-
-  .vid-cool{
-    width:100%;
-    height:300px;
   }
 
   .modal-container h1 {
