@@ -20,6 +20,10 @@ const UserSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  isReviewer: {
+    type: Boolean,
+    default: false,
+  },
   notifications: [
     {
       type: Schema.Types.ObjectId,

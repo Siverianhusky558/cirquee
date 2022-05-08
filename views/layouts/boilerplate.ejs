@@ -13,15 +13,6 @@
       crossorigin="anonymous"
     />
 
-    <script
-      type="text/javascript"
-      src="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.js"
-    ></script>
-    <link
-      type="text/css"
-      href="https://api.mapbox.com/mapbox-gl-js/v2.4.1/mapbox-gl.css"
-      rel="stylesheet"
-    />
     <link rel="stylesheet" type="text/css" href="/stylesheets/app.css" />
     <link rel="stylesheet" type="text/css" href="/stylesheets/user.css" />
 
@@ -30,6 +21,7 @@
 
   <body class="d-flex flex-column vh-100">
     <%- include('../partials/navbar') %>
+    <div class="mb-5"></div>
     <main class="container mt-5">
       <%- include('../partials/flash') %> <%- body %>
     </main>

@@ -19,10 +19,12 @@ const mongoSanitize = require('express-mongo-sanitize');
 const userRoutes = require('./routes/users');
 const postRoutes = require('./routes/posts');
 const reviewRoutes = require('./routes/reviews');
+const suggestionRoutes = require("./routes/suggestions");
 
 const MongoDBStore = require('connect-mongo')(session);
 // 'mongodb://localhost:27017/community-rises'
-const dbUrl = process.env.DB_URL;
+// const dbUrl = process.env.DB_URL;
+const dbUrl = 'mongodb://localhost:27017/community-rises';
 
 mongoose.connect(dbUrl, {
   useNewUrlParser: true,
@@ -156,6 +158,7 @@ app.use(async (req, res, next) => {
   next();
 });
 
+app.use('/suggestions', suggestionRoutes);
 app.use('/', userRoutes);
 app.use('/posts', postRoutes);
 app.use('/posts/:id/reviews', reviewRoutes);

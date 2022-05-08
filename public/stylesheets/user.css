@@ -139,3 +139,15 @@ svg {
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
+
+.icon {
+  display:block;
+}
+
+.shield {
+  background-color: beige;
+  color:cornflowerblue;
+  width: 80px;
+  height: 90px;
+  border-radius: 50%;
+}

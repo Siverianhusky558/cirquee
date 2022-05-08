@@ -1,0 +1,38 @@
+<% layout("layouts/boilerplate") %> 
+
+<div class="row mt-5">
+    <h1 class="text-center">Fill the information below</h1>
+    <div class="col-md-6 offset-md-3">
+      <form
+        autocomplete="off"
+        action="/suggestions"
+        method="POST"
+        novalidate
+        class="validated-form"
+      >
+        <div class="mb-3">
+          <label class="form-label">What is the type of the form?</label><br>
+          <label for="report">Report</label> <input value="report" required type="radio" id="report" name="usage">
+          <label for="feature">Feature</label> <input value="feature" required type="radio" id="feature" name="usage">
+          
+          <div class="valid-feedback">Looks Good!</div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="body">Body</label>
+            <textarea
+              class="form-control"
+              type="text"
+              id="body"
+              name="body"
+              required
+            ></textarea>
+            <div class="valid-feedback">Looks Good!</div>
+          </div>
+  
+        <div class="mb-3">
+          <button class="btn btn-success" type="submit">Submit</button>
+        </div>
+      </form>
+      <a href="/posts">Back To All Posts</a>
+    </div>
+  </div>
