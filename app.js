@@ -167,6 +167,13 @@ app.get('/', (req, res) => {
   res.render('home');
 });
 
+app.get("/lobby", (req, res) => {
+  res.render("lobby");
+})
+
+app.get("/video", (req, res) => {
+  res.render("video");
+})
 
 app.all('*', (req, res, next) => {
   next(new ExpressError('Page Not Found', 404));

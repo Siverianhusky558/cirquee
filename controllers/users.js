@@ -124,8 +124,8 @@ module.exports.register = async (req, res, next) => {
         }
       } else {
         user.avatar = {
-          url: "https://res.cloudinary.com/dgzorrtut/image/upload/v1651096185/Community%20Rises/quds_tkxjyg.jpg",
-          filename: "Community Rises/quds_tkxjyg"
+          url: "https://res.cloudinary.com/dgzorrtut/image/upload/v1652613280/Community%20Rises/quds_pyikeq.jpg",
+          filename: "Community Rises/quds_pyikeq"
         }
       }
     } else {
