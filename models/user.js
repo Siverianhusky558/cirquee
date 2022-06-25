@@ -13,6 +13,10 @@ const UserSchema = new Schema({
     required: true,
     unique: true,
   },
+  emailShown: {
+    type: Boolean,
+    default: false,
+  },
   avatar: [ImageSchema],
   firstName: String,
   lastName: String,

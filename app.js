@@ -1,27 +1,27 @@
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config();
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
 }
 
-const express = require('express');
-const path = require('path');
-const mongoose = require('mongoose');
-const ejsMate = require('ejs-mate');
-const session = require('express-session');
-const flash = require('connect-flash');
-const ExpressError = require('./utils/ExpressError');
-const methodOverride = require('method-override');
-const passport = require('passport');
-const LocalStrategy = require('passport-local');
-const User = require('./models/user');
-const mongoSanitize = require('express-mongo-sanitize');
+const express = require("express");
+const path = require("path");
+const mongoose = require("mongoose");
+const ejsMate = require("ejs-mate");
+const session = require("express-session");
+const flash = require("connect-flash");
+const ExpressError = require("./utils/ExpressError");
+const methodOverride = require("method-override");
+const passport = require("passport");
+const LocalStrategy = require("passport-local");
+const User = require("./models/user");
+const mongoSanitize = require("express-mongo-sanitize");
 // const helmet = require('helmet');
 
-const userRoutes = require('./routes/users');
-const postRoutes = require('./routes/posts');
-const reviewRoutes = require('./routes/reviews');
+const userRoutes = require("./routes/users");
+const postRoutes = require("./routes/posts");
+const reviewRoutes = require("./routes/reviews");
 const suggestionRoutes = require("./routes/suggestions");
 
-const MongoDBStore = require('connect-mongo')(session);
+const MongoDBStore = require("connect-mongo")(session);
 // 'mongodb://localhost:27017/community-rises'
 const dbUrl = process.env.DB_URL;
 // const dbUrl = 'mongodb://localhost:27017/community-rises';
@@ -34,28 +34,28 @@ mongoose.connect(dbUrl, {
 });
 
 const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error'));
-db.once('open', () => {
-  console.log('Database connected');
+db.on("error", console.error.bind(console, "connection error"));
+db.once("open", () => {
+  console.log("Database connected");
 });
 
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 
-app.engine('ejs', ejsMate);
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+app.engine("ejs", ejsMate);
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
 
-app.use(methodOverride('_method'));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(methodOverride("_method"));
+app.use(express.static(path.join(__dirname, "public")));
 app.use(
   mongoSanitize({
-    replaceWith: '_',
+    replaceWith: "_",
   })
 );
 
-const secret = process.env.SECRET || 'thisshouldbeabettersecret';
+const secret = process.env.SECRET || "thisshouldbeabettersecret";
 
 const store = new MongoDBStore({
   url: dbUrl,
@@ -63,13 +63,13 @@ const store = new MongoDBStore({
   secret,
 });
 
-store.on('error', function (e) {
-  console.log('SESSION STORE ERROR', e);
+store.on("error", function (e) {
+  console.log("SESSION STORE ERROR", e);
 });
 
 const sessionConfig = {
   store,
-  name: 'session',
+  name: "session",
   secret,
   resave: false,
   saveUninitialized: true,
@@ -132,7 +132,7 @@ app.use(flash());
 //   })
 // );
 
-app.locals.moment = require('moment');
+app.locals.moment = require("moment");
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -146,43 +146,47 @@ app.use(async (req, res, next) => {
   if (req.user) {
     try {
       let user = await User.findById(req.user._id)
-        .populate('notifications', null, { isRead: false })
+        .populate("notifications", null, { isRead: false })
         .exec();
       res.locals.notifications = user.notifications.reverse();
     } catch (err) {
       console.log(err.message);
     }
   }
-  res.locals.success = req.flash('success');
-  res.locals.error = req.flash('error');
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
   next();
 });
 
-app.use('/suggestions', suggestionRoutes);
-app.use('/', userRoutes);
-app.use('/posts', postRoutes);
-app.use('/posts/:id/reviews', reviewRoutes);
+app.use("/suggestions", suggestionRoutes);
+app.use("/", userRoutes);
+app.use("/posts", postRoutes);
+app.use("/posts/:id/reviews", reviewRoutes);
 
-app.get('/', (req, res) => {
-  res.render('home');
+app.get("/", (req, res) => {
+  res.render("home");
 });
 
 app.get("/lobby", (req, res) => {
   res.render("lobby");
-})
+});
 
-app.get("/video", (req, res) => {
-  res.render("video");
-})
+app.get("/room", (req, res) => {
+  res.render("room");
+});
 
-app.all('*', (req, res, next) => {
-  next(new ExpressError('Page Not Found', 404));
+app.get("/logs", (req, res) => {
+  res.render("logs");
+});
+
+app.all("*", (req, res, next) => {
+  next(new ExpressError("Page Not Found", 404));
 });
 
 app.use((err, req, res, next) => {
   const { statusCode = 500 } = err;
-  if (!err.message) err.message = 'Oh No, Something Went Wrong!';
-  res.status(statusCode).render('error', { err });
+  if (!err.message) err.message = "Oh No, Something Went Wrong!";
+  res.status(statusCode).render("error", { err });
 });
 
 const port = process.env.PORT || 3000;

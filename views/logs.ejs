@@ -1,0 +1,243 @@
+<% layout('layouts/boilerplate') %>
+<style>
+  h1 {
+    text-align: center;
+  }
+
+  .logs {
+    margin: 20px 0;
+    padding: 10px;
+    border: #ccc 2px solid;
+    width: 50%;
+  }
+
+  #be {
+    color: red;
+  }
+
+  #responsive {
+    color: rebeccapurple;
+  }
+
+  #cheese {
+    color: #ffa600;
+    text-shadow: 0 2px 0.25px #ffa600;
+    /* border-bottom: 2px solid #ffa600; */
+  }
+
+  .bi-record-circle {
+    transform: scale(2);
+    float: right;
+    color: red;
+    margin-left: 20px;
+  }
+
+  .bi-camera-video {
+    color: #111;
+    transform: scale(2);
+    float: right;
+  }
+
+  #finger {
+    color: #eca665;
+  }
+
+  #hurts {
+    color: #880808;
+    font-weight: 700;
+  }
+
+  #sh1 {
+    font-size: 20px;
+  }
+
+  #sh2 {
+    font-size: 16px;
+  }
+
+  #sh3 {
+    font-size: 10px;
+  }
+
+  @media (max-width: 568px) {
+    .logs {
+      width: 100%;
+    }
+
+    #zuck {
+      width: 100%;
+    }
+  }
+</style>
+<h1>Change Logs</h1>
+<section class="logs" id="log-1">
+  <p>Community Rises v0.1Beta <small>* 15-5-2021</small></p>
+  <ul>
+    <li>Welcome To Community Rises!</li>
+  </ul>
+</section>
+
+<section class="logs" id="log-2">
+  <p>Community Rises v0.2Beta <small>* 23-7-2021</small></p>
+  <ul>
+    <li>Removed Maps</li>
+    <li>Removed location attribute</li>
+  </ul>
+</section>
+
+<section class="logs" id="log-3">
+  <p>Community Rises v0.3Beta <small>* 30-7-2021</small></p>
+  <ul>
+    <li>Added post creation date</li>
+    <li>Added user profile photo</li>
+  </ul>
+</section>
+
+<section class="logs" id="log-4">
+  <p>Community Rises v0.4Beta <small>* 16-3-2022</small></p>
+  <h3>✨<span id="be">Be</span> <span id="responsive">Responsive</span>✨</h3>
+  <ul>
+    <li>Added Reponsiveness</li>
+  </ul>
+</section>
+
+<section class="logs" id="log-5">
+  <p>Community Rises v0.5Beta <small>* 20-3-2022</small></p>
+  <ul>
+    <li>3 participants beta tested</li>
+    CREDITS:
+    <a href="/users/62795288f1da3100165280ca">@Sama Mobarez</a>
+    <a href="/users/627a9f2cbd97c00016714eed">@Mozo</a>
+    <a href="/users/627138b8d406230016c895fe">@Mohamad</a>
+  </ul>
+</section>
+
+<section class="logs" id="log-6">
+  <p>Community Rises v1.0 <small>* 1-4-2022</small></p>
+  <ul>
+    <li>
+      <a href="users/626ff6053a7e9c001600320e">@Yousuf</a> was invited
+      <small>- All credits</small>
+    </li>
+    <img
+      src="https://res.cloudinary.com/dgzorrtut/image/upload/v1656060763/Community%20Rises/yoyo_tezozh.jpg"
+      alt="yoyo"
+      width="100"
+      height="100"
+    />
+  </ul>
+</section>
+
+<section class="logs" id="log-7">
+  <p>Community Rises v1.2 <small>* 12-4-2022</small></p>
+  <ul>
+    <li>Removed title</li>
+    <li>Changed "description" to "body"</li>
+    <li>Removed star ratings for mobile phones</li>
+  </ul>
+</section>
+
+<section class="logs" id="log-8">
+  <p>Community Rises v1.1 <small>* 20-4-2022</small></p>
+  <ul>
+    <li>Added video guide</li>
+  </ul>
+</section>
+
+<section class="logs" id="log-9">
+  <p>Community Rises v1.3 <small>* 4-5-2022</small></p>
+  <ul>
+    <li style="display: inline">Added Suggestions Page</li>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      fill="currentColor"
+      class="bi bi-pen"
+      viewBox="0 0 16 16"
+      style="color: #111"
+    >
+      <path
+        d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001zm-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708l-1.585-1.585z"
+      />
+    </svg>
+  </ul>
+</section>
+
+<section class="logs" id="log-10">
+  <p>Community Rises v1.3 <small>* 20-5-2022</small></p>
+  <h3>📷Say <span id="cheese">Cheese</span>!📷</h3>
+  <ul>
+    <li>Added Video Chat</li>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      fill="currentColor"
+      class="bi bi-record-circle"
+      viewBox="0 0 16 16"
+    >
+      <path
+        d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"
+      />
+      <path d="M11 8a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+    </svg>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      fill="currentColor"
+      class="bi bi-camera-video"
+      viewBox="0 0 16 16"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5zm11.5 5.175 3.5 1.556V4.269l-3.5 1.556v4.35zM2 4a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1H2z"
+      />
+    </svg>
+  </ul>
+</section>
+
+<section class="logs" id="log-11">
+  <p>Community Rises v1.4 <small>* 22-5-2022</small></p>
+  <ul>
+    <li>Removed Video Chat 😔</li>
+  </ul>
+</section>
+
+<section class="logs" id="log-12">
+  <p>Community Rises v1.5 <small>* 1-6-2022</small></p>
+  <ul>
+    <li>Added Video Chat</li>
+  </ul>
+</section>
+
+<section class="logs" id="log-13">
+  <p>Community Rises v1.6 <small>* 24-6-2022</small></p>
+  <h3>
+    🤫Shhh.. <span id="sh1">Don't</span> <span id="sh2">tell</span>
+    <span id="sh3">anyone</span>🤫
+  </h3>
+  <ul>
+    <li>Added a new Security Policy</li>
+    <li>Posts aren't visible unless you are logged in</li>
+    <li>You could toggle the visibility of your email address</li>
+    <li>No one, not even CR could see your email</li>
+    <img
+      id="zuck"
+      src="https://res.cloudinary.com/dgzorrtut/image/upload/v1656061372/Community%20Rises/zuck_cropped_gqmr2o.jpg"
+      alt="zuck"
+    />
+  </ul>
+</section>
+
+<section class="logs" id="log-14">
+  <p>Community Rises <small>* 25-6-2022</small></p>
+  <h3>
+    😭Oh, so your <span id="finger">finger</span>
+    <span id="hurts">hurts</span>?😭
+  </h3>
+  <ul>
+    <li>Posts are now sorted by latest creation date</li>
+  </ul>
+</section>

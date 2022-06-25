@@ -44,6 +44,26 @@
       />
       <div class="valid-feedback">Looks good!</div>
     </div>
+    <div class="mb-3">
+      <label class="form-label" for="emailShown">Show Email</label>
+      <% if(user.emailShown) { %> 
+      <input
+        class="form-control"
+        type="text"
+        id="emailShown"
+        name="emailShown"
+        value="yes"
+      />
+      <% } else { %>
+            <input
+            class="form-control"
+            type="text"
+            id="emailShown"
+            name="emailShown"
+            value="no"
+          />
+        <% } %>  
+    </div>
     <!-- <div class="mb-3">
       <label class="form-label" for="bio">Bio</label>
       <textarea class="form-control" id="bio" name="email">

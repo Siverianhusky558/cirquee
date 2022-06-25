@@ -19,9 +19,11 @@
       </span>
       <span class="resp-hide">
       <p><%= user.firstName %> <%= user.lastName %></p>
+      <% if(user.emailShown){ %>
       <p>
         <a href="mailto:<%= user.email %>"><%= user.email %></a>
       </p>
+      <% } %>
       </spanc>
     </div>
     <span class="divider"></span>

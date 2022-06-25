@@ -4,7 +4,7 @@ const User = require("../models/user");
 const Notification = require("../models/notification");
 
 module.exports.index = async (req, res) => {
-  const posts = await Post.find({}).populate("popupText").populate("author");
+  const posts = await Post.find({}).populate("author").sort({ createdAt: -1 });
   res.render("posts/index", { posts });
 };
 

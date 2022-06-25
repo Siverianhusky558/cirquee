@@ -1,19 +1,19 @@
-const User = require('../models/user');
-const Notification = require('../models/notification');
+const User = require("../models/user");
+const Notification = require("../models/notification");
 
 module.exports.usersIndex = async (req, res) => {
   const users = await User.find({});
-  res.render('users/index', { users });
+  res.render("users/index", { users });
 };
 
 module.exports.getUserById = async (req, res) => {
   try {
     const { userId } = req.params;
-    const user = await User.findById(userId).populate('followers').exec();
-    res.render('users/show', { user });
+    const user = await User.findById(userId).populate("followers").exec();
+    res.render("users/show", { user });
   } catch (e) {
-    req.flash('error', e.message);
-    return res.redirect('back');
+    req.flash("error", e.message);
+    return res.redirect("back");
   }
 };
 
@@ -22,16 +22,16 @@ module.exports.followUser = async (req, res) => {
     const { id } = req.params;
     const user = await User.findById(id);
     if (user.followers.includes(req.user._id)) {
-      req.flash('error', `Already following ${user.username}`);
+      req.flash("error", `Already following ${user.username}`);
     } else {
       user.followers.push(req.user._id);
-      req.flash('success', `Successfully followed ${user.username}!`);
+      req.flash("success", `Successfully followed ${user.username}!`);
     }
     user.save();
     res.redirect(`/users/${id}`);
   } catch (e) {
-    req.flash('error', e.message);
-    res.redirect('/posts');
+    req.flash("error", e.message);
+    res.redirect("/posts");
   }
 };
 
@@ -53,15 +53,15 @@ module.exports.getNotifications = async (req, res) => {
   try {
     const user = await User.findById(req.user._id)
       .populate({
-        path: 'notifications',
+        path: "notifications",
         options: { sort: { _id: -1 } },
       })
       .exec();
     let allNotifications = user.notifications;
-    res.render('notifications/index', { allNotifications });
+    res.render("notifications/index", { allNotifications });
   } catch (e) {
-    req.flash('error', e.message);
-    res.redirect('back');
+    req.flash("error", e.message);
+    res.redirect("back");
   }
 };
 
@@ -72,15 +72,15 @@ module.exports.handleNotification = async (req, res) => {
     notification.save();
     res.redirect(`/notifications/${notification.id}`);
   } catch (e) {
-    req.flash('error', e.message);
-    res.redirect('/posts');
+    req.flash("error", e.message);
+    res.redirect("/posts");
   }
 };
 
 module.exports.renderEditForm = async (req, res) => {
   const { userId } = req.params;
   const user = await User.findById(userId);
-  res.render('users/edit', { user });
+  res.render("users/edit", { user });
 };
 
 module.exports.editUser = async (req, res) => {
@@ -90,19 +90,26 @@ module.exports.editUser = async (req, res) => {
   user.lastName = req.body.lastName;
   // user.biography = req.body.biography.trim();
   user.email = req.body.email;
-  if (req.body.adminCode === 'smell2good') {
+  if (req.body.adminCode === "smell2good") {
     user.isAdmin = true;
-  } else if (req.body.adminCode === '') {
+  } else if (req.body.adminCode === "") {
   } else {
-    req.flash('error', 'Admin code is incorrect!');
+    req.flash("error", "Admin code is incorrect!");
+  }
+  if (req.body.emailShown.toLowerCase() == "yes") {
+    user.emailShown = true;
+    console.log(user.emailShown);
+  } else {
+    user.emailShown = false;
+    console.log(user.emailShown);
   }
   await user.save();
-  req.flash('success', 'Successfully updated profile!');
+  req.flash("success", "Successfully updated profile!");
   res.redirect(`/users/${user._id}`);
 };
 
 module.exports.renderRegister = (req, res) => {
-  res.render('users/register');
+  res.render("users/register");
 };
 
 module.exports.register = async (req, res, next) => {
@@ -116,17 +123,17 @@ module.exports.register = async (req, res, next) => {
       avatar,
     });
     if (!req.file) {
-      const rander = Math.floor(Math.random() * 2)
-      if(rander == 1) {
+      const rander = Math.floor(Math.random() * 2);
+      if (rander == 1) {
         user.avatar = {
           url: "https://res.cloudinary.com/dgzorrtut/image/upload/v1650717015/Community%20Rises/love_ct0bqm.png",
-          filename: "Community Rises/love_ct0bqm"
-        }
+          filename: "Community Rises/love_ct0bqm",
+        };
       } else {
         user.avatar = {
           url: "https://res.cloudinary.com/dgzorrtut/image/upload/v1652613280/Community%20Rises/quds_pyikeq.jpg",
-          filename: "Community Rises/quds_pyikeq"
-        }
+          filename: "Community Rises/quds_pyikeq",
+        };
       }
     } else {
       user.avatar = {
@@ -134,40 +141,40 @@ module.exports.register = async (req, res, next) => {
         filename: req.file.filename,
       };
     }
-    if (req.body.adminCode === 'smell2bad') {
+    if (req.body.adminCode === "smell2bad") {
       user.isAdmin = true;
-    } else if (req.body.adminCode === '') {
+    } else if (req.body.adminCode === "") {
     } else {
-      req.flash('error', 'Admin code is incorrect!');
+      req.flash("error", "Admin code is incorrect!");
     }
     const registeredUser = await User.register(user, password);
     req.login(registeredUser, (err) => {
       if (err) return next(err);
       req.flash(
-        'success',
+        "success",
         `Welcome to Community Rises, ${registeredUser.username}!`
       );
-      res.redirect('/posts');
+      res.redirect("/posts");
     });
   } catch (e) {
-    req.flash('error', e.message);
-    res.redirect('/register');
+    req.flash("error", e.message);
+    res.redirect("/register");
   }
 };
 
 module.exports.renderLogin = (req, res) => {
-  res.render('users/login');
+  res.render("users/login");
 };
 
 module.exports.login = (req, res) => {
-  req.flash('success', 'Welcome back!');
-  const redirectUrl = req.session.returnTo || '/posts';
+  req.flash("success", "Welcome back!");
+  const redirectUrl = req.session.returnTo || "/posts";
   delete req.session.returnTo;
   res.redirect(redirectUrl);
 };
 
 module.exports.logout = (req, res) => {
   req.logout();
-  req.flash('success', 'Logged you out! We will miss you :(');
-  res.redirect('/posts');
+  req.flash("success", "Logged you out! We will miss you :(");
+  res.redirect("/posts");
 };

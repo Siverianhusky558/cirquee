@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const Review = require('./review');
+const mongoose = require("mongoose");
+const Review = require("./review");
 const Schema = mongoose.Schema;
 
 const ImageSchema = new Schema({
@@ -7,8 +7,8 @@ const ImageSchema = new Schema({
   filename: String,
 });
 
-ImageSchema.virtual('thumbnail').get(function () {
-  return this.url.replace('/upload', '/upload/w_200');
+ImageSchema.virtual("thumbnail").get(function () {
+  return this.url.replace("/upload", "/upload/w_200");
 });
 
 const opts = { toJSON: { virtuals: true } };
@@ -20,19 +20,19 @@ const PostSchema = new Schema(
     createdAt: { type: Date, default: Date.now },
     author: {
       type: Schema.Types.ObjectId,
-      ref: 'User',
+      ref: "User",
     },
     reviews: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Review',
+        ref: "Review",
       },
     ],
   },
   opts
 );
 
-PostSchema.post('findOneAndDelete', async function (doc) {
+PostSchema.post("findOneAndDelete", async function (doc) {
   if (doc) {
     await Review.deleteMany({
       _id: {
@@ -42,4 +42,4 @@ PostSchema.post('findOneAndDelete', async function (doc) {
   }
 });
 
-module.exports = mongoose.model('Post', PostSchema);
+module.exports = mongoose.model("Post", PostSchema);
