@@ -1,50 +1,87 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <title>Room</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='/stylesheets/main.css'>
-    <link rel='stylesheet' type='text/css' media='screen' href='/stylesheets/lobby.css'>
-</head>
-<body>
-
-        <header id="nav">
-       <div class="nav--list">
-            <a href="lobby.html"/>
-                <h3 id="logo">
-                    <img src="./images/logo.png" alt="Site Logo">
-                    <span>Murmur</span>
-                </h3>
-            </a>
-       </div>   
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://res.cloudinary.com/dgzorrtut/image/upload/v1656234870/Community%20Rises/CR_Icon_Rounded_qa4fut.png"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="/stylesheets/main.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      media="screen"
+      href="/stylesheets/lobby.css"
+    />
+  </head>
+  <body>
+    <header id="nav">
+      <div class="nav--list">
+        <a href="/lobby">
+          <h3 id="logo">
+            <img
+              src="https://res.cloudinary.com/dgzorrtut/image/upload/v1656234604/Community%20Rises/CR_Chat_Logo_nl1cuv.png"
+              alt="Site Logo"
+            />
+            <span>Murmur</span>
+          </h3>
+        </a>
+      </div>
+      <a id="back" href="/posts"
+        ><svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          fill="currentColor"
+          class="bi bi-arrow-left-circle-fill"
+          viewBox="0 0 16 16"
+        >
+          <path
+            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"
+          /></svg
+        >Back</a
+      >
     </header>
 
     <main id="room__lobby__container">
-        <div id="form__container">
-             <div id="form__container__header">
-                 <p>👋 Create or Join Room</p>
-             </div>
- 
- 
-            <form id="lobby__form">
- 
- 
-                 <div class="form__field__wrapper">
-                     <label>Room Name</label>
-                     <input type="text" name="room" />
-                 </div>
- 
-                 <div class="form__field__wrapper">
-                     <button type="submit">Go to Room 
-                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"/></svg>
-                    </button>
-                 </div>
-            </form>
+      <div id="form__container">
+        <div id="form__container__header">
+          <p>👋 Create or Join a Room</p>
         </div>
-     </main>
-    
-</body>
-<script type="text/javascript" src="javascripts/lobby.js"></script>
+
+        <form autocomplete="off" id="lobby__form">
+          <div class="form__field__wrapper">
+            <label>Room Name</label>
+            <input type="text" name="room" />
+          </div>
+
+          <div class="form__field__wrapper">
+            <button type="submit">
+              Go to Room
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z"
+                />
+              </svg>
+            </button>
+          </div>
+        </form>
+      </div>
+    </main>
+  </body>
+  <script type="text/javascript" src="javascripts/lobby.js"></script>
 </html>

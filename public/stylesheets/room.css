@@ -211,7 +211,7 @@
   height: 300px;
   width: 300px;
 
-  background-image: url("/images/logo.png");
+  background-image: url("https://res.cloudinary.com/dgzorrtut/image/upload/v1656234870/Community%20Rises/CR_Icon_Rounded_qa4fut.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: 75px;
@@ -332,5 +332,5 @@
 .stream__actions button.active,
 .stream__actions a:hover,
 .stream__actions button:hover {
-  background-color: #845695;
+  background-color: #00ff55;
 }
