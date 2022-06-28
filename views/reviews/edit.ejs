@@ -1,6 +1,6 @@
 <% layout('layouts/boilerplate') %>
 <link rel="stylesheet" href="/stylesheets/stars.css" />
-<link rel="stylesheet" href="/stylesheets/app.css">
+<link rel="stylesheet" href="/stylesheets/app.css" />
 <div class="row">
   <div class="col-6 offset-3">
     <h2>Edit your Comment</h2>
@@ -53,21 +53,21 @@
 <script>
   const rating = <%= review['rating'] %>;
 </script>
-<script src="/javascripts/main.js"></script>
+<script src="/javascripts/stars.js"></script>
 <script>
   function isArabic(text) {
-  var arabic = /[\u0600-\u06FF]/;
-  result = arabic.test(text);
-  return result;
+    var arabic = /[\u0600-\u06FF]/;
+    result = arabic.test(text);
+    return result;
   }
 
   const body = document.querySelector("#body");
 
   body.addEventListener("input", () => {
-    if(isArabic(body.value)){
+    if (isArabic(body.value)) {
       body.setAttribute("dir", "rtl");
-    }else{
-      body.setAttribute("dir","ltr");
+    } else {
+      body.setAttribute("dir", "ltr");
     }
-  })
+  });
 </script>
