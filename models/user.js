@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
-const passportLocalMongoose = require('passport-local-mongoose');
+const passportLocalMongoose = require("passport-local-mongoose");
 
 const ImageSchema = new Schema({
   url: String,
@@ -18,6 +18,7 @@ const UserSchema = new Schema({
     default: false,
   },
   avatar: [ImageSchema],
+  colour: { type: String, default: "colour1" },
   firstName: String,
   lastName: String,
   isAdmin: {
@@ -31,17 +32,17 @@ const UserSchema = new Schema({
   notifications: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Notification',
+      ref: "Notification",
     },
   ],
   followers: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'User',
+      ref: "User",
     },
   ],
 });
 
 UserSchema.plugin(passportLocalMongoose);
 
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model("User", UserSchema);

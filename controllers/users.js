@@ -90,6 +90,7 @@ module.exports.editUser = async (req, res) => {
   user.lastName = req.body.lastName;
   // user.biography = req.body.biography.trim();
   user.email = req.body.email;
+  user.colour = req.body.colour;
   if (req.body.adminCode === "smell2good") {
     user.isAdmin = true;
   } else if (req.body.adminCode === "") {
@@ -98,10 +99,8 @@ module.exports.editUser = async (req, res) => {
   }
   if (req.body.emailShown.toLowerCase() == "yes") {
     user.emailShown = true;
-    console.log(user.emailShown);
   } else {
     user.emailShown = false;
-    console.log(user.emailShown);
   }
   await user.save();
   req.flash("success", "Successfully updated profile!");

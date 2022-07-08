@@ -46,7 +46,7 @@
     </div>
     <div class="mb-3">
       <label class="form-label" for="emailShown">Show Email</label>
-      <% if(user.emailShown) { %> 
+      <% if(user.emailShown) { %>
       <input
         class="form-control"
         type="text"
@@ -55,14 +55,22 @@
         value="yes"
       />
       <% } else { %>
-            <input
-            class="form-control"
-            type="text"
-            id="emailShown"
-            name="emailShown"
-            value="no"
-          />
-        <% } %>  
+      <input
+        class="form-control"
+        type="text"
+        id="emailShown"
+        name="emailShown"
+        value="no"
+      />
+      <% } %>
+    </div>
+    <div class="radios">
+      <input id="colour1" type="radio" value="colour1" name="colour" />
+      <input id="colour2" type="radio" value="colour2" name="colour" />
+      <input id="colour3" type="radio" value="colour3" name="colour" />
+      <input id="colour4" type="radio" value="colour4" name="colour" />
+      <input id="colour5" type="radio" value="colour5" name="colour" />
+      <input id="colour6" type="radio" value="colour6" name="colour" />
     </div>
     <!-- <div class="mb-3">
       <label class="form-label" for="bio">Bio</label>
@@ -92,5 +100,4 @@
       Edit
     </button>
   </form>
-  <div></div>
 </div>

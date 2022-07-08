@@ -26,15 +26,82 @@
   border-radius: 5px 0 0 5px;
 }
 
-.bg-c-lite-green {
-  background: -webkit-gradient(
-    linear,
-    left top,
-    right top,
-    from(#f29263),
-    to(#ee5a6f)
-  );
+.radios {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+  gap: 20px;
+}
+
+.colour1 {
   background: linear-gradient(to right, #ee5a6f, #f29263);
+}
+
+.colour2 {
+  background: linear-gradient(to right, #ff4e50, #f9d423);
+}
+
+.colour3 {
+  background: linear-gradient(to right, #fbd3e9, #bb377d);
+}
+
+.colour4 {
+  background: linear-gradient(to right, #606c88, #3f4c6b);
+}
+
+.colour5 {
+  background: linear-gradient(to right, #b993d6, #8ca6db);
+}
+
+.colour6 {
+  background: linear-gradient(to right, #870000, #190a05);
+}
+
+input[type="radio"] {
+  text-align: center;
+  appearance: none;
+  width: 1.15em;
+  height: 1.15em;
+  border-radius: 2px;
+  transform: scale(2);
+  margin-right: 20px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+input[type="radio"]:checked {
+  transform: scale(1.5);
+}
+
+#colour1 {
+  background: linear-gradient(to right, #ee5a6f, #f29263);
+  border: 0.15em solid linear-gradient(to right, #ee5a6f, #f29263);
+}
+
+#colour2 {
+  background: linear-gradient(to right, #ff4e50, #f9d423);
+  border: 0.15em solid linear-gradient(to right, #ff4e50, #f9d423);
+}
+
+#colour3 {
+  background: linear-gradient(to right, #fbd3e9, #bb377d);
+  border: 0.15em solid linear-gradient(to right, #fbd3e9, #bb377d);
+}
+
+#colour4 {
+  background: linear-gradient(to right, #606c88, #3f4c6b);
+  border: 0.15em solid linear-gradient(to right, #606c88, #3f4c6b);
+}
+
+#colour5 {
+  background: linear-gradient(to right, #b993d6, #8ca6db);
+  border: 0.15em solid linear-gradient(to right, #b993d6, #8ca6db);
+}
+
+#colour6 {
+  background: linear-gradient(to right, #870000, #190a05);
+  border: 0.15em solid linear-gradient(to right, #870000, #190a05);
 }
 
 .user-profile {
@@ -141,12 +208,12 @@ svg {
 }
 
 .icon {
-  display:block;
+  display: block;
 }
 
 .shield {
   background-color: beige;
-  color:cornflowerblue;
+  color: cornflowerblue;
   width: 80px;
   height: 90px;
   border-radius: 50%;
