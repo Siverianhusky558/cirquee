@@ -1,0 +1,7 @@
+#mob {
+  transition: 0.5s;
+}
+
+#mob.hidden {
+  transform: translateY(100%);
+}

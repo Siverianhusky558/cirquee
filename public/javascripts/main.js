@@ -22,4 +22,14 @@ function checkIfMatch(e) {
   }
 }
 
+function collide() {
+  if (window.scrollY >= document.body.scrollHeight - 550) {
+    mob.classList.add("hidden");
+  } else {
+    mob.classList.remove("hidden");
+  }
+}
+
+window.addEventListener("scroll", collide);
+
 // export {isArabic};

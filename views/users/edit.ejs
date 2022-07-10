@@ -65,12 +65,31 @@
       <% } %>
     </div>
     <div class="radios">
+      <% if(user.colour == "colour1") { %>
+      <input id="colour1" type="radio" value="colour1" name="colour" checked />
+      <% }else{ %>
       <input id="colour1" type="radio" value="colour1" name="colour" />
+      <% } %> <% if(user.colour == "colour2") { %>
+      <input id="colour2" type="radio" value="colour2" name="colour" checked />
+      <% } else{%>
       <input id="colour2" type="radio" value="colour2" name="colour" />
+      <% } %> <% if(user.colour == "colour3"){ %>
+      <input id="colour3" type="radio" value="colour3" name="colour" checked />
+      <% }else{ %>
       <input id="colour3" type="radio" value="colour3" name="colour" />
+      <%}%> <% if(user.colour == "colour4"){ %>
+      <input id="colour4" type="radio" value="colour4" name="colour" checked />
+      <% } else{ %>
       <input id="colour4" type="radio" value="colour4" name="colour" />
+      <% } %> <% if(user.colour == "colour5") {%>
+      <input id="colour5" type="radio" value="colour5" name="colour" checked />
+      <% }else{ %>
       <input id="colour5" type="radio" value="colour5" name="colour" />
+      <% } %> <% if(user.colour == "colour6"){ %>
+      <input id="colour6" type="radio" value="colour6" name="colour" checked />
+      <% }else{ %>
       <input id="colour6" type="radio" value="colour6" name="colour" />
+      <% } %>
     </div>
     <!-- <div class="mb-3">
       <label class="form-label" for="bio">Bio</label>
