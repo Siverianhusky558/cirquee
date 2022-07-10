@@ -23,7 +23,7 @@ function checkIfMatch(e) {
 }
 
 function collide() {
-  if (window.scrollY >= document.body.scrollHeight - 550) {
+  if (window.scrollY >= document.body.scrollHeight - 1050) {
     mob.classList.add("hidden");
   } else {
     mob.classList.remove("hidden");
