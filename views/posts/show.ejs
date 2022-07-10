@@ -315,12 +315,6 @@
     tex.setAttribute("dir", "ltr");
   }
 
-  if (isArabic(tex)) {
-    tex.setAttribute("dir", "rtl");
-  } else {
-    tex.setAttribute("dir", "ltr");
-  }
-
   body.addEventListener("input", () => {
     if (isArabic(body.value)) {
       body.setAttribute("dir", "rtl");
