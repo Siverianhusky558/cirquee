@@ -2,7 +2,7 @@ const User = require("../models/user");
 const Notification = require("../models/notification");
 
 module.exports.usersIndex = async (req, res) => {
-  const users = await User.find({});
+  const users = await User.find({}).sort({ firstName: 1 });
   res.render("users/index", { users });
 };
 
