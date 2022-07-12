@@ -1,69 +1,74 @@
 <% layout('layouts/boilerplate') %>
-<div class="row">
-  <h1 class="text-center">New Post</h1>
-  <div class="col-md-6 offset-md-3">
-    <form
-      autocomplete="off"
-      action="/posts"
-      method="POST"
-      novalidate
-      class="validated-form"
-      enctype="multipart/form-data"
-    >
-      <div class="mb-3">
-        <label class="form-label" for="description">Description</label>
-        <textarea
-          class="form-control"
-          type="text"
-          id="description"
-          name="post[description]"
-          required
-        ></textarea>
-        <div class="valid-feedback">Looks Good!</div>
+    <div class="row">
+      <% if(currentUser.isDark) { %> 
+      <h1 style="color: #fff;" class="text-center">New Post</h1>
+      <% } else { %>
+      <h1 class="text-center">New Post</h1>
+        <% } %>  
+      <div class="col-md-6 offset-md-3">
+        <form
+          autocomplete="off"
+          action="/posts"
+          method="POST"
+          novalidate
+          class="validated-form"
+          enctype="multipart/form-data"
+        >
+          <div class="mb-3">
+            <% if(currentUser.isDark) { %> 
+              <label class="form-label" style="color: #fff" for="description">Description</label>
+              <% } else { %>
+                <label class="form-label" for="description">Description</label>
+                <% } %>  
+            <textarea
+              class="form-control"
+              type="text"
+              id="description"
+              name="post[description]"
+              required
+            ></textarea>
+            <div class="valid-feedback">Looks Good!</div>
+          </div>
+          <div class="mb-3">
+            <% if(currentUser.isDark) { %> 
+              <label for="image" style="color: #fff" class="form-label">Add Image(s)</label>
+              <% } else { %>
+                <label for="image" class="form-label">Add Image(s)</label>
+                <% } %>  
+            <input
+              class="form-control"
+              type="file"
+              id="image"
+              name="image"
+              multiple
+            />
+          </div>
+
+          <div class="mb-3">
+            <button class="btn btn-success" type="submit">Create Post</button>
+          </div>
+        </form>
+        <a href="/posts">Back To All Posts</a>
       </div>
-      <div class="mb-3">
-        <label for="image" class="form-label">Add Image(s)</label>
-        <input
-          class="form-control"
-          type="file"
-          id="image"
-          name="image"
-          multiple
-        />
-      </div>
+    </div>
 
-      <div class="mb-3">
-        <button class="btn btn-success" type="submit">Create Post</button>
-      </div>
-    </form>
-    <a href="/posts">Back To All Posts</a>
-  </div>
-</div>
+    <script>
+      // import { isArabic } from "../javascripts/main.js";
+      const desc = document.getElementById("description");
 
-<script>
-// import { isArabic } from "../javascripts/main.js";
-const tit = document.getElementById("title");
-const desc = document.getElementById("description");
+      function isArabic(text) {
+        var arabic = /[\u0600-\u06FF]/;
+        result = arabic.test(text);
+        return result;
+      }
 
-function isArabic(text) {
-  var arabic = /[\u0600-\u06FF]/;
-  result = arabic.test(text);
-  return result;
-}
-
-tit.addEventListener("input", () => {
-  if(isArabic(tit.value)){
-    tit.setAttribute("dir", "rtl")    
-  } else {
-    tit.setAttribute("dir", "ltr")
-  }
-});
-
-desc.addEventListener("input", () => {
-  if(isArabic(desc.value)){
-    desc.setAttribute("dir", "rtl")
-  }else{
-    desc.setAttribute("dir","ltr");
-  }
-});
-</script>
+      desc.addEventListener("input", () => {
+        if (isArabic(desc.value)) {
+          desc.setAttribute("dir", "rtl");
+        } else {
+          desc.setAttribute("dir", "ltr");
+        }
+      });
+    </script>
+  </body>
+</body>

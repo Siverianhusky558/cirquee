@@ -102,6 +102,12 @@ module.exports.editUser = async (req, res) => {
   } else {
     user.emailShown = false;
   }
+  console.log(req.body.isDark);
+  if (req.body.isDark == "Dark") {
+    user.isDark = true;
+  } else {
+    user.isDark = false;
+  }
   await user.save();
   req.flash("success", "Successfully updated profile!");
   res.redirect(`/users/${user._id}`);

@@ -22,8 +22,11 @@
 
     <title>Community Rises</title>
   </head>
-
+  <% if(currentUser && currentUser.isDark) { %> 
+    <body class="d-flex flex-column vh-100" style="background-color: #111;">
+    <% }else{ %> 
   <body class="d-flex flex-column vh-100">
+    <% } %> 
     <%- include('../partials/navbar') %>
     <div class="mb-5"></div>
     <main class="container mt-5">

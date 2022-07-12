@@ -23,10 +23,42 @@ function checkIfMatch(e) {
 }
 
 function collide() {
-  if (window.scrollY >= document.body.scrollHeight - 1050) {
+  if (window.scrollY >= document.body.scrollHeight - 600) {
     mob.classList.add("hidden");
   } else {
     mob.classList.remove("hidden");
+  }
+}
+
+// NAV ELEMENTS
+const post = document.getElementById("post");
+const newPost = document.getElementById("new");
+const members = document.getElementById("members");
+const me = document.getElementById("me");
+
+const params = window.location.pathname;
+
+console.log(params);
+
+if (document.body.style.backgroundColor == "rgb(17, 17, 17)") {
+  if (params == "/posts") {
+    post.setAttribute("fill", "#111");
+  } else if (params == "/posts/new") {
+    newPost.setAttribute("fill", "#111");
+  } else if (params == "/users") {
+    members.setAttribute("fill", "#111");
+  } else if (params[6] == "/") {
+    me.setAttribute("fill", "#111");
+  }
+} else {
+  if (params == "/posts") {
+    post.setAttribute("fill", "#fff");
+  } else if (params == "/posts/new") {
+    newPost.setAttribute("fill", "#fff");
+  } else if (params == "/users") {
+    members.setAttribute("fill", "#fff");
+  } else if (params[6] == "/") {
+    me.setAttribute("fill", "#fff");
   }
 }
 

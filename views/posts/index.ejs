@@ -1,13 +1,16 @@
 <% layout('layouts/boilerplate') %> <% if(currentUser && currentUser.isAdmin) {
 %>
 <h1>You're an admin!</h1>
+<% } %> <% if(currentUser && currentUser.isDark) { %>
+<h1 style="text-align: center; color: #fff">Latest Posts</h1>
+<% } else { %>
+<h1 style="text-align: center">Latest Posts</h1>
 <% } %>
-<h1 style="text-align: center;">Latest Posts</h1>
 <div style="height: 30px"></div>
-<% if(currentUser) {%>
-<% for(let post of posts) { %>
+<% if(currentUser) {%> <% for(let post of posts) { %>
 <div
-  class="post-container card mb-3" style="box-shadow: 2px 2px 10px rgba(255, 0, 255, 0.5); transform: scale(0.8);"
+  class="post-container card mb-3"
+  style="box-shadow: 2px 2px 10px rgba(255, 0, 255, 0.5); transform: scale(0.8)"
 >
   <a href="/users/<%= post.author._id %>"
     ><img
@@ -18,18 +21,15 @@
   <% if(post.images.length) { %>
   <h4 style="display: inline"><%= post.author.username %> posted this!</h4>
   <a href="/posts/<%= post._id %>"
-    ><img
-      src="<%= post.images[0].url %>"
-      class="index-post"
-      alt=""
+    ><img src="<%= post.images[0].url %>" class="index-post" alt=""
   /></a>
   <% } else { %>
-      <h4 style="display:inline;"><%= post.author.username %> says:</h4>
+  <h4 style="display: inline"><%= post.author.username %> says:</h4>
   <% } %>
   <div class="card-body">
     <p class="desc card-text"><%= post.description %></p>
     <p class="card-text">
-      <small style="display: block;" class="text-muted"
+      <small style="display: block" class="text-muted"
         >Posted <%= moment(post.createdAt).fromNow() %>
       </small>
     </p>
@@ -37,42 +37,42 @@
       style="float: right"
       href="/posts/<%= post._id %>"
       class="btn btn-primary"
-      >Read More</a>
+      >Read More</a
+    >
   </div>
 </div>
-<% } %>
-<% } %>
+<% } %> <% } %>
 
 <script>
   function isArabic(text) {
-  var arabic = /[\u0600-\u06FF]/;
-  result = arabic.test(text);
-  return result;
+    var arabic = /[\u0600-\u06FF]/;
+    result = arabic.test(text);
+    return result;
   }
-  
-  const tit = document.querySelectorAll(".card-title")
+
+  const tit = document.querySelectorAll(".card-title");
   const tex = document.querySelectorAll(".card-text");
   const desc = document.querySelectorAll(".desc");
-  
+
   desc.forEach((text) => {
-	if(text.innerText.length >= 100){
-		text.innerText = text.innerText.slice(0,100)+"..."
-	}
-  })
+    if (text.innerText.length >= 100) {
+      text.innerText = text.innerText.slice(0, 100) + "...";
+    }
+  });
 
   tit.forEach((h1) => {
-    if(isArabic(h1.innerText)){
-      h1.setAttribute("dir","rtl");
-    }else{
-      h1.setAttribute("dir","ltr");
+    if (isArabic(h1.innerText)) {
+      h1.setAttribute("dir", "rtl");
+    } else {
+      h1.setAttribute("dir", "ltr");
     }
   });
 
   tex.forEach((p, idx) => {
-    if(isArabic(p.innerText)){
-      p.setAttribute("dir","rtl");
-    }else{
-      p.setAttribute("dir","ltr");
+    if (isArabic(p.innerText)) {
+      p.setAttribute("dir", "rtl");
+    } else {
+      p.setAttribute("dir", "ltr");
     }
   });
 </script>

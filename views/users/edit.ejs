@@ -1,5 +1,9 @@
 <% layout('layouts/boilerplate') %>
+<% if(currentUser.isDark) { %>
+<div style="color: #fff;" class="col-md-6 offset-md-3">
+  <% } else { %>
 <div class="col-md-6 offset-md-3">
+  <% } %>   
   <form
     class="validated-form"
     action="/users/<%= user._id %>?_method=PUT"
@@ -7,116 +11,177 @@
     autocomplete="off"
     novalidate
   >
-    <h1 class="text-center">Edit Your Profile</h1>
-    <div class="mb-3">
-      <label class="form-label" for="firstName">First Name</label>
-      <input
-        class="form-control"
-        type="text"
-        id="firstName"
-        name="firstName"
-        value="<%= user.firstName %>"
-        required
-      />
-      <div class="valid-feedback">Looks good!</div>
-    </div>
-    <div class="mb-3">
-      <label class="form-label" for="lastName">Last Name</label>
-      <input
-        class="form-control"
-        type="text"
-        id="lastName"
-        name="lastName"
-        value="<%= user.lastName %>"
-        required
-      />
-      <div class="valid-feedback">Looks good!</div>
-    </div>
-    <div class="mb-3">
-      <label class="form-label" for="email">Email</label>
-      <input
-        class="form-control"
-        type="email"
-        id="email"
-        name="email"
-        value="<%= user.email %>"
-        required
-      />
-      <div class="valid-feedback">Looks good!</div>
-    </div>
-    <div class="mb-3">
-      <label class="form-label" for="emailShown">Show Email</label>
-      <% if(user.emailShown) { %>
-      <input
-        class="form-control"
-        type="text"
-        id="emailShown"
-        name="emailShown"
-        value="yes"
-      />
-      <% } else { %>
-      <input
-        class="form-control"
-        type="text"
-        id="emailShown"
-        name="emailShown"
-        value="no"
-      />
-      <% } %>
-    </div>
-    <div class="radios">
-      <% if(user.colour == "colour1") { %>
-      <input id="colour1" type="radio" value="colour1" name="colour" checked />
-      <% }else{ %>
-      <input id="colour1" type="radio" value="colour1" name="colour" />
-      <% } %> <% if(user.colour == "colour2") { %>
-      <input id="colour2" type="radio" value="colour2" name="colour" checked />
-      <% } else{%>
-      <input id="colour2" type="radio" value="colour2" name="colour" />
-      <% } %> <% if(user.colour == "colour3"){ %>
-      <input id="colour3" type="radio" value="colour3" name="colour" checked />
-      <% }else{ %>
-      <input id="colour3" type="radio" value="colour3" name="colour" />
-      <%}%> <% if(user.colour == "colour4"){ %>
-      <input id="colour4" type="radio" value="colour4" name="colour" checked />
-      <% } else{ %>
-      <input id="colour4" type="radio" value="colour4" name="colour" />
-      <% } %> <% if(user.colour == "colour5") {%>
-      <input id="colour5" type="radio" value="colour5" name="colour" checked />
-      <% }else{ %>
-      <input id="colour5" type="radio" value="colour5" name="colour" />
-      <% } %> <% if(user.colour == "colour6"){ %>
-      <input id="colour6" type="radio" value="colour6" name="colour" checked />
-      <% }else{ %>
-      <input id="colour6" type="radio" value="colour6" name="colour" />
-      <% } %>
-    </div>
-    <!-- <div class="mb-3">
+  <h1 class="text-center">Edit Your Profile</h1>
+  <h3>Theme:</h3>
+  <select name="isDark" id="dark">
+    <option value="Light">Light</option>
+    <option value="Dark">Dark</option>
+  </select>
+    <div class="centered-content">
+      <div class="mb-3">
+        <label class="form-label" for="firstName">First Name</label>
+        <input
+          class="form-control"
+          type="text"
+          id="firstName"
+          name="firstName"
+          value="<%= user.firstName %>"
+          required
+        />
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="lastName">Last Name</label>
+        <input
+          class="form-control"
+          type="text"
+          id="lastName"
+          name="lastName"
+          value="<%= user.lastName %>"
+          required
+        />
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="email">Email</label>
+        <input
+          class="form-control"
+          type="email"
+          id="email"
+          name="email"
+          value="<%= user.email %>"
+          required
+        />
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="emailShown">Show Email</label>
+        <% if(user.emailShown) { %>
+        <input
+          class="form-control"
+          type="text"
+          id="emailShown"
+          name="emailShown"
+          value="yes"
+        />
+        <% } else { %>
+        <input
+          class="form-control"
+          type="text"
+          id="emailShown"
+          name="emailShown"
+          value="no"
+        />
+        <% } %>
+      </div>
+      <div class="radios">
+        <% if(user.colour == "colour1") { %>
+        <input
+          id="colour1"
+          type="radio"
+          value="colour1"
+          name="colour" class="colours"
+          checked
+        />
+        <% }else{ %>
+        <input id="colour1" type="radio" value="colour1" name="colour" class="colours" />
+        <% } %> <% if(user.colour == "colour2") { %>
+        <input
+          id="colour2"
+          type="radio"
+          value="colour2"
+          name="colour" 
+          class="colours"
+          checked
+        />
+        <% } else{%>
+        <input id="colour2" type="radio" value="colour2" name="colour" class="colours" />
+        <% } %> <% if(user.colour == "colour3"){ %>
+        <input
+          id="colour3"
+          type="radio"
+          value="colour3"
+          name="colour" class="colours"
+          checked
+        />
+        <% }else{ %>
+        <input id="colour3" type="radio" value="colour3" name="colour" class="colours" />
+        <%}%> <% if(user.colour == "colour4"){ %>
+        <input
+          id="colour4"
+          type="radio"
+          value="colour4"
+          name="colour" class="colours"
+          checked
+        />
+        <% } else{ %>
+        <input id="colour4" type="radio" value="colour4" name="colour" class="colours" />
+        <% } %> <% if(user.colour == "colour5") {%>
+        <input
+          id="colour5"
+          type="radio"
+          value="colour5"
+          name="colour" class="colours"
+          checked
+        />
+        <% }else{ %>
+        <input id="colour5" type="radio" value="colour5" name="colour" class="colours" />
+        <% } %> <% if(user.colour == "colour6"){ %>
+        <input
+          id="colour6"
+          type="radio"
+          value="colour6"
+          name="colour" class="colours"
+          checked
+        />
+        <% }else{ %>
+        <input id="colour6" type="radio" value="colour6" name="colour" class="colours" />
+        <% } %>
+     <!-- <%# if(user.colour == "colour7"){ %>
+          <input
+            id="colour7"
+            type="radio"
+            value="colour7"
+            name="colour" class="colours"
+            checked
+          />
+          <%# }else{ %>
+          <input id="colour7" type="radio" value="colour7" name="colour" class="colours" />
+          <%# } %> -->
+      </div>
+      </div>
+      <!-- <div class="mb-3">
       <label class="form-label" for="bio">Bio</label>
       <textarea class="form-control" id="bio" name="email">
 <%# user.biography %> </textarea
       >
       <div class="valid-feedback">Looks good!</div>
     </div> -->
-    <% if(currentUser && currentUser.isAdmin) { %>
-    <p class="text-muted">Already an admin!</p>
-    <input name="adminCode" value="" type="text" style="display: none" />
-    <% } else { %>
-    <div class="mb-3">
-      <label class="form-label" for="adminCode"
-        >Wanna become an admin? Type the code
-      </label>
-      <input class="form-control" type="text" id="adminCode" name="adminCode" />
-      <div class="valid-feedback">Looks good!</div>
+      <% if(currentUser && currentUser.isAdmin) { %>
+      <p class="text-muted">Already an admin!</p>
+      <input name="adminCode" value="" type="text" style="display: none" />
+      <% } else { %>
+      <div class="mb-3">
+        <label class="form-label" for="adminCode"
+          >Wanna become an admin? Type the code
+        </label>
+        <input
+          class="form-control"
+          type="text"
+          id="adminCode"
+          name="adminCode"
+        />
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+      <% } %>
+      <!-- <p style="color: red; display: none" id="notif">Invalid admin code</p> -->
+      <button
+        style="display: block; width: 100%; color: #fff"
+        class="btn btn-warning"
+        type="submit"
+      >
+        Edit
+      </button>
     </div>
-    <% } %>
-    <!-- <p style="color: red; display: none" id="notif">Invalid admin code</p> -->
-    <button
-      style="display: block; width: 100%; color: #fff"
-      class="btn btn-warning"
-      type="submit"
-    >
-      Edit
-    </button>
   </form>
 </div>

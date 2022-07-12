@@ -1,4 +1,9 @@
+<% if(currentUser && currentUser.isDark) { %> 
+  <nav id="comp" class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+
+<% }else{ %> 
 <nav id="comp" class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+  <% } %> 
   <div class="container-fluid">
     <a href="/" class="navbar-brand"><img src="https://res.cloudinary.com/dgzorrtut/image/upload/v1656234870/Community%20Rises/CR_Icon_Rounded_qa4fut.png" width="50" height="50" alt="Community Rises"></a>
     <button

@@ -58,7 +58,11 @@
   background: linear-gradient(to right, #870000, #190a05);
 }
 
-input[type="radio"] {
+.colour7 {
+  background: linear-gradient(to right, #83a4d4, #b6fbff);
+}
+
+.colours {
   text-align: center;
   appearance: none;
   width: 1.15em;
@@ -70,7 +74,7 @@ input[type="radio"] {
   transition: 0.5s;
 }
 
-input[type="radio"]:checked {
+.colours:checked {
   transform: scale(1.5);
 }
 
@@ -104,6 +108,11 @@ input[type="radio"]:checked {
   border: 0.15em solid linear-gradient(to right, #870000, #190a05);
 }
 
+/* #colour7 {
+  background: linear-gradient(to right, #83a4d4, #b6fbff);
+  border: 0.15em solid linear-gradient(to right, #83a4d4, #b6fbff);
+} */
+
 .user-profile {
   padding: 20px 0;
 }
@@ -128,6 +137,23 @@ h6 {
 
 .card .card-block p {
   line-height: 25px;
+}
+
+.centered-content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+#dark {
+  width: 100%;
+  text-align: center;
+  background: linear-gradient(to right, #83a4d4, #b6fbff);
+  color: #fff;
+  font-weight: bolder;
+  border: 0;
+  font-size: 20px;
+  border-radius: 40px;
+  cursor: pointer;
 }
 
 @media only screen and (min-width: 1400px) {
@@ -214,7 +240,15 @@ svg {
 .shield {
   background-color: beige;
   color: cornflowerblue;
-  width: 80px;
-  height: 90px;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.yin-yang {
+  background: linear-gradient(to right, #b993d6, #8ca6db);
+  color: black;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
 }

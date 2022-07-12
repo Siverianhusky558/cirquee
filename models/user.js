@@ -29,6 +29,14 @@ const UserSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  isYousuf: {
+    type: Boolean,
+    default: false,
+  },
+  isDark: {
+    type: Boolean,
+    default: false,
+  },
   notifications: [
     {
       type: Schema.Types.ObjectId,

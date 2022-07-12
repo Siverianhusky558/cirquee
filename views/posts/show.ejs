@@ -77,8 +77,11 @@
   </div>
 </div>
 <div class="col-6">
-  <% if(currentUser) { %>
+  <% if(currentUser) { %> <% if(currentUser && currentUser.isDark) { %>
+  <h2 style="color: #fff">Leave A Comment</h2>
+  <% }else { %>
   <h2>Leave A Comment</h2>
+  <% } %>
   <form
     action="/posts/<%= post._id %>/reviews"
     method="POST"
@@ -109,7 +112,11 @@
       </fieldset>
     </div>
     <div class="mb-3">
+      <% if(currentUser && currentUser.isDark) { %>
+      <label style="color: #fff" class="form-label" for="body">Comment:</label>
+      <% }else { %>
       <label class="form-label" for="body">Comment:</label>
+      <% } %>
       <textarea
         class="form-control"
         name="review[body]"
