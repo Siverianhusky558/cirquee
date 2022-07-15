@@ -1,13 +1,13 @@
 <% if(currentUser && currentUser.isDark) { %>
-<footer class="footer bg-light py-3 mt-5">
+<footer class="footer bg-dark py-3 mt-5">
   <% } else { %>
-  <footer class="footer bg-dark py-3 mt-5">
+  <footer class="footer bg-light py-3 mt-5">
     <% } %>
     <div class="container">
       <% if(currentUser && currentUser.isDark) { %> 
-      <span class="text-dark"
+      <span class="text-muted"
       <% } else { %>
-        <span class="text-muted"
+        <span class="text-dark"
         <% } %>  
         >&copy; Community Rises 2022
         <span style="float: right"

@@ -1,47 +1,49 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const passport = require('passport');
-const User = require('../models/user');
-const users = require('../controllers/users');
-const catchAsync = require('../utils/catchAsync');
-const multer = require('multer');
-const { storage } = require('../cloudinary');
+const passport = require("passport");
+const User = require("../models/user");
+const users = require("../controllers/users");
+const catchAsync = require("../utils/catchAsync");
+const multer = require("multer");
+const { storage } = require("../cloudinary");
 const upload = multer({ storage });
-const { isLoggedIn, isProfileAuthor } = require('../middleware');
+const { isLoggedIn, isProfileAuthor } = require("../middleware");
 
-router.get('/users', users.usersIndex);
+router.get("/users", users.usersIndex);
 
 router
-  .route('/register')
+  .route("/register")
   .get(users.renderRegister)
-  .post(upload.single('avatar'), catchAsync(users.register));
+  .post(upload.single("avatar"), catchAsync(users.register));
 
-router.get('/notifications', isLoggedIn, users.getNotifications);
+router.get("/notifications", isLoggedIn, users.getNotifications);
 
 router
-  .route('/login')
+  .route("/login")
   .get(users.renderLogin)
   .post(
-    passport.authenticate('local', {
+    passport.authenticate("local", {
       failureFlash: true,
-      failureRedirect: '/login',
+      failureRedirect: "/login",
     }),
     users.login
   );
 
-router.get('/logout', users.logout);
+router.get("/logout", users.logout);
 
 router
-  .route('/users/:userId')
+  .route("/users/:userId")
   .get(users.getUserById)
   .put(isProfileAuthor, users.editUser);
 
-router.get('/users/:userId/edit', isProfileAuthor, users.renderEditForm);
+router.get("/users/:userId/edit", isProfileAuthor, users.renderEditForm);
 
-router.get('/follow/:id', isLoggedIn, users.followUser);
+router.get("/follow/:id", isLoggedIn, users.followUser);
 
 // router.get('/unfollow/:id', isLoggedIn, users.unFollowUser);
 
-router.get('/notifications/:id', isLoggedIn, users.handleNotification);
+router.get("/notifications/:id", isLoggedIn, users.handleNotification);
+
+router.delete("/notifications/:id", isLoggedIn, users.deleteNotification);
 
 module.exports = router;

@@ -77,6 +77,13 @@ module.exports.handleNotification = async (req, res) => {
   }
 };
 
+module.exports.deleteNotification = async (req, res) => {
+  const { id } = req.params;
+  const deletedNotification = await Notification.findByIdAndDelete(id);
+  req.flash("success", "Successfully deleted notification");
+  res.redirect("/posts");
+};
+
 module.exports.renderEditForm = async (req, res) => {
   const { userId } = req.params;
   const user = await User.findById(userId);

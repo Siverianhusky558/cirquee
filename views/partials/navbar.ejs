@@ -1,8 +1,8 @@
 <% if(currentUser && currentUser.isDark) { %> 
-  <nav id="comp" class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+  <nav id="comp" class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
 
 <% }else{ %> 
-<nav id="comp" class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+<nav id="comp" class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
   <% } %> 
   <div class="container-fluid">
     <a href="/" class="navbar-brand"><img src="https://res.cloudinary.com/dgzorrtut/image/upload/v1656234870/Community%20Rises/CR_Icon_Rounded_qa4fut.png" width="50" height="50" alt="Community Rises"></a>
@@ -30,7 +30,7 @@
         <% } else { %>
           <a class="nav-link" href="/lobby">Video Chat!</a>
           <span id="notif-ring"></span>
-          <a href="/notifications"><svg style="color: rgba(255,255,255,.55);" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
+          <a href="/notifications"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="<%= currentUser.isDark ? "white" : "grey" %>" class="bi bi-bell-fill" viewBox="0 0 16 16">
             <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
           </svg></a>
           <a class="nav-link text-success" href="/users/<%= currentUser._id %> "

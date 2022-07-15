@@ -43,8 +43,16 @@ module.exports.getPostById = async (req, res) => {
       },
     })
     .populate("author");
-  console.log(post);
-  res.render("posts/show", { post });
+  if (!post) {
+    req.flash(
+      "error",
+      "Unable to find post. Check the url or the post has been deleted"
+    );
+    res.redirect("/posts");
+  } else {
+    console.log(post);
+    res.render("posts/show", { post });
+  }
 };
 
 module.exports.renderEditForm = async (req, res) => {

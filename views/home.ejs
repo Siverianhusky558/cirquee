@@ -54,14 +54,14 @@
         </p>
         <a
           href="/posts"
-          class="btn btn-lg btn-secondary font-weight-bold border-white bg-white"
+          class="btn btn-lg <%= currentUser && currentUser.isDark ? "bg-dark text-light" : "bg-light text-dark" %>  font-weight-bold"
           >View Posts</a
         >
       </main>
 
-      <div class="modal-container">
+      <div class="modal-container <%= currentUser && currentUser.isDark ? "bg-dark text-light" : "bg-light text-dark"%>"
         <h1>Welcome To Community Rises</h1>
-        <button class="close-btn btn btn-lg btn-dark">Close</button>
+        <button class="close-btn btn btn-lg <%= currentUser && currentUser.isDark ? "btn-light text-dark" : "btn-dark text-light" %> ">Close</button>
         <p class="welcoming-text">
           Welcome to the first yet the best family platform ever! Below you will
           know how to use the platform like a pro! 😎

@@ -2,22 +2,12 @@
 <a class="btn btn-sm btn-danger" href="/suggestions/new">Add a suggestion</a>
 <% if(suggestions[0]) { %>
 <div class="mt-5">
-  <% for(let suggestion of suggestions) { %> <% if(currentUser &&
-  currentUser.isDark) { %>
-  <div
-    class="container-fluid mb-3"
-    style="
-      background-color: #fff;
-      color: #111;
-      box-shadow: 2px 2px 10px rgba(255, 255, 0, 0.7);
-    "
-  >
-    <% } else { %>
+  <% for(let suggestion of suggestions) { %>
     <div
-      class="container-fluid mb-3"
+      class="container-fluid mb-3 <%= currentUser && currentUser.isDark ? "bg-dark text-light" : "bg-light text-dark" %> "
       style="box-shadow: 2px 2px 10px rgba(255, 255, 0, 0.7)"
     >
-      <% } %> <% if(currentUser && currentUser.isReviewer) { %>
+      <% if(currentUser && currentUser.isReviewer) { %>
       <form
         class="d-inline"
         action="/suggestions/<%= suggestion._id %>?_method=DELETE"
