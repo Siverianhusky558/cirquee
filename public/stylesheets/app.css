@@ -152,6 +152,85 @@ input[type="checkbox"] {
   display: inline;
 }
 
+.code {
+  background-color: whitesmoke;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  z-index: 2;
+  right: 0;
+  top: 6em;
+  transform: translateX(100%);
+  transition: 1s ease;
+}
+
+.code.show {
+  transform: translateX(0);
+}
+
+#code-number {
+  letter-spacing: 4px;
+}
+
+#code-input {
+  transform: scale(0.91);
+  width: 87px;
+  height: 30px;
+  letter-spacing: 4px;
+}
+
+#verify {
+  border: 0;
+  background-color: lawngreen;
+  color: #fff;
+  padding: 10px;
+  font-weight: bolder;
+  margin: 5px 0;
+  border-radius: 8px;
+}
+
+.spacing {
+  margin-bottom: 3em;
+}
+
+.body {
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.body.show {
+  display: flex;
+}
+
+.body img {
+  width: 200px;
+  height: 200px;
+  text-align: center;
+  animation: iconspin 1s linear infinite;
+}
+
+@keyframes iconspin {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 @media (max-width: 558px) {
   .index-post {
     width: 240px;
@@ -211,7 +290,11 @@ input[type="checkbox"] {
   }
 
   #notif-link {
-    font-size: 12px;
+    font-size: 20px;
+  }
+
+  #notif-time {
+    font-size: 8px;
   }
 
   #notif-link:focus {
@@ -237,5 +320,9 @@ input[type="checkbox"] {
     top: 2em;
     left: 5em;
     transform: rotate(90deg);
+  }
+
+  .code {
+    top: 0;
   }
 }

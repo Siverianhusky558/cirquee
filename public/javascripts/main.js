@@ -36,6 +36,49 @@ const newPost = document.getElementById("new");
 const members = document.getElementById("members");
 // const me = document.getElementById("me");
 
+// Registeration Form Verification Elements
+const registerForm = document.getElementById("register-form");
+const codeContainer = document.querySelector(".code");
+const codeNumber = document.getElementById("code-number");
+const codeInput = document.getElementById("code-input");
+const verifyBtn = document.getElementById("verify");
+
+if (registerForm == null) {
+} else {
+  codeInput.value = "";
+  registerForm.addEventListener("submit", (form) => {
+    form.preventDefault();
+    codeContainer.classList.add("show");
+    generateCode();
+    verifyBtn.addEventListener("click", () => {
+      if (codeInput.value == codeNumber.innerText) {
+        registerForm.submit();
+      } else {
+        alert("Code entered is incorrect! Please try again.");
+      }
+    });
+  });
+}
+
+// Login Form Loading Animation
+const loginForm = document.getElementById("login-form");
+const animationContainer = document.querySelector(".body");
+
+if (loginForm == null) {
+} else {
+  loginForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    animationContainer.classList.add("show");
+    let seconds = [
+      100, 300, 500, 700, 1000, 1200, 1600, 1800, 2000, 3000, 4000,
+    ];
+    setTimeout(
+      loginForm.submit(),
+      seconds[Math.floor(Math.random() * seconds.length)]
+    );
+  });
+}
+
 const params = window.location.pathname;
 
 console.log(params);
@@ -67,3 +110,14 @@ if (document.body.style.backgroundColor == "rgb(17, 17, 17)") {
 window.addEventListener("scroll", collide);
 
 // export {isArabic};
+
+// Function to generate random code
+function generateCode() {
+  let nums = "0123456789";
+  code = "";
+  for (let i = 0; i < 6; i++) {
+    let rand = Math.floor(Math.random() * nums.length);
+    code += nums[rand];
+  }
+  codeNumber.innerText = code;
+}

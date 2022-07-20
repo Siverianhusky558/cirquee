@@ -22,7 +22,7 @@ module.exports.createPost = async (req, res, next) => {
   await post.save();
   let user = await User.findById(req.user._id).populate("followers").exec();
   let newNotification = {
-    username: req.user.username,
+    avatar: req.user.avatar,
     postId: post.id,
   };
   for (const follower of user.followers) {

@@ -6,7 +6,12 @@
   <% allNotifications.forEach(function(notification) { %>
   <li>
     <a id="notif-link" href="/posts/<%= notification.postId %>">
-      <%= notification.username %> created a new post! Check it out!
+      <img
+        src="<%= notification.avatar[0].url %>"
+        alt="User Profile Photo"
+        style="width: 40px; height: 40px; border-radius: 50%"
+      />
+      created a new post!
       <small id="notif-time" class="text-muted"
         ><%= moment(notification.createdAt).fromNow() %>
       </small>

@@ -1,10 +1,15 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+const ImageSchema = new Schema({
+  url: String,
+  filename: String,
+});
+
 const NotificationSchema = new Schema({
-  username: String,
+  avatar: [ImageSchema],
   postId: String,
   createdAt: { type: Date, default: Date.now },
 });
 
-module.exports = mongoose.model('Notification', NotificationSchema);
+module.exports = mongoose.model("Notification", NotificationSchema);

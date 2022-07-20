@@ -254,7 +254,7 @@ svg {
 .yin-yang {
   background: linear-gradient(to right, #b993d6, #8ca6db);
   color: black;
-  width: 100px;
-  height: 100px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
 }
