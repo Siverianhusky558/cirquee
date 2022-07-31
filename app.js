@@ -175,8 +175,9 @@ app.get("/room", (req, res) => {
   res.render("room");
 });
 
-app.get("/logs", (req, res) => {
-  res.render("logs");
+app.get("/logs", async (req, res) => {
+  const user = await User.findOne({"username": "TheDeepNightmare"})
+  res.render("logs", { user });
 });
 
 app.all("*", (req, res, next) => {
