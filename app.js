@@ -23,8 +23,8 @@ const suggestionRoutes = require("./routes/suggestions");
 
 const MongoDBStore = require("connect-mongo")(session);
 // 'mongodb://localhost:27017/community-rises'
-const dbUrl = process.env.DB_URL;
-// const dbUrl = "mongodb://localhost:27017/community-rises";
+// const dbUrl = process.env.DB_URL;
+const dbUrl = "mongodb://localhost:27017/community-rises";
 
 mongoose.connect(dbUrl, {
   useNewUrlParser: true,
@@ -176,7 +176,7 @@ app.get("/room", (req, res) => {
 });
 
 app.get("/logs", async (req, res) => {
-  const user = await User.findOne({"username": "TheDeepNightmare"})
+  const user = await User.findOne({ username: "TheDeepNightmare" });
   res.render("logs", { user });
 });
 
