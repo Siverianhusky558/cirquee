@@ -80,7 +80,7 @@
       </div>
 
       <footer class="mt-auto text-white-50">
-        <p>&copy; 2022 Community Rises</p>
+        <p id="footing-copy">&copy; 2022 Community Rises</p>
       </footer>
     </div>
 
@@ -101,6 +101,12 @@
       closeBtn.addEventListener("click", () => {
         modalContainer.style.display = "none";
       });
+
+      const cop = document.getElementById("footing-copy")
+      let date = new Date();
+      let year = date.getFullYear();
+
+      cop.innerText = `© Community Rises ${year}`
     </script>
   </body>
 </html>
