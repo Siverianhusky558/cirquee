@@ -3,12 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="icon"
-      type="image/png"
-      href="https://res.cloudinary.com/dgzorrtut/image/upload/v1656234870/Community%20Rises/CR_Icon_Rounded_qa4fut.png"
-    />
-    <title>Community Rises</title>
+    <link id="favicon-tag" rel="icon" type="image/png" href="https://res.cloudinary.com/dgzorrtut/image/upload/v1754573686/Cirquee_Enlarged_uxdnw0.png" />
+    <title>Cirquee</title>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css"
@@ -21,30 +17,30 @@
   <body class="d-flex text-center text-white bg-dark">
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
       <header class="mb-auto">
-        <div>
-          <img
-            src="https://res.cloudinary.com/dgzorrtut/image/upload/v1656234870/Community%20Rises/CR_Icon_Rounded_qa4fut.png"
-            width="100"
-            height="100"
-            alt="Community Rises"
-          />
-          <h3 class="float-md-left mb-0">Community Rises</h3>
-          <nav class="nav nav-masthead justify-content-center float-md-right">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-            <a class="nav-link" href="/posts">Posts</a>
-            <% if(!currentUser) { %>
-            <a class="nav-link" href="/login">Login</a>
-            <a class="nav-link" href="/register">Register</a>
-            <% } else { %>
-            <a class="nav-link" href="/logout">Logout</a>
-            <% } %>
-          </nav>
-        </div>
-      </header>
+  <div class="d-flex align-items-center">
+    <img
+      src="https://res.cloudinary.com/dgzorrtut/image/upload/v1754574468/Cirquee_light_ycgor1.png"
+      width="60"
+      height="60"
+      alt="Cirquee"
+      class="me-3"
+    />
+    <h3 class="float-md-left mb-0">Cirquee</h3>
+  </div>
+  <nav class="nav nav-masthead justify-content-center float-md-right">
+    <a class="nav-link active" aria-current="page" href="#">Home</a>
+    <a class="nav-link" href="/posts">Posts</a>
+    <% if(!currentUser) { %>
+    <a class="nav-link" href="/login">Login</a>
+    <a class="nav-link" href="/register">Register</a>
+    <% } else { %>
+    <a class="nav-link" href="/logout">Logout</a>
+    <% } %>
+  </nav>
+</header>
       <main class="px-3">
-        <h1>Community Rises</h1>
         <p class="lead">
-          <span id="first-line">Welcome to Community Rises!</span> <br />
+          <h2 id="first-line">Welcome to Cirquee!</h2> <br />
           <br />
           Jump right in and start exploring the latest news in our family.
           <br />
@@ -59,8 +55,8 @@
         >
       </main>
 
-      <div class="modal-container <%= currentUser && currentUser.isDark ? "bg-dark text-light" : "bg-light text-dark"%>"
-        <h1>Welcome To Community Rises</h1>
+      <div class="modal-container <%= currentUser && currentUser.isDark ? "bg-dark text-light" : "bg-light text-dark"%>">
+        <h1>Welcome To Cirquee</h1>
         <button class="close-btn btn btn-lg <%= currentUser && currentUser.isDark ? "btn-light text-dark" : "btn-dark text-light" %> ">Close</button>
         <p class="welcoming-text">
           Welcome to the first yet the best family platform ever! Below you will
@@ -80,10 +76,23 @@
       </div>
 
       <footer class="mt-auto text-white-50">
-        <p id="footing-copy">&copy; 2022 Community Rises</p>
+        <p id="footing-copy"></p>
       </footer>
     </div>
 
+    <script>
+      const faviconTag = document.getElementById("favicon-tag");
+      const isDark = window.matchMedia("(prefers-color-scheme: dark)");
+     
+      const changeFavicon = () => {
+        if(isDark.matches) {
+          faviconTag.href = "https://res.cloudinary.com/dgzorrtut/image/upload/v1754574468/Cirquee_light_ycgor1.png"
+        } else {
+          faviconTag.href = "https://res.cloudinary.com/dgzorrtut/image/upload/v1754573686/Cirquee_Enlarged_uxdnw0.png"
+        }
+      }
+      changeFavicon();
+    </script>
     <script
       src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
       integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
@@ -106,7 +115,7 @@
       let date = new Date();
       let year = date.getFullYear();
 
-      cop.innerText = `© Community Rises ${year}`
+      cop.innerText = `© Cirquee ${year}`
     </script>
   </body>
 </html>

@@ -5,7 +5,13 @@
 <nav id="comp" class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
   <% } %> 
   <div class="container-fluid">
-    <a href="/" class="navbar-brand"><img src="https://res.cloudinary.com/dgzorrtut/image/upload/v1656234870/Community%20Rises/CR_Icon_Rounded_qa4fut.png" width="50" height="50" alt="Community Rises"></a>
+    <a href="/" class="navbar-brand">
+      <% if(currentUser && currentUser.isDark) { %>
+      <img src="https://res.cloudinary.com/dgzorrtut/image/upload/v1754574468/Cirquee_light_ycgor1.png" width="70" height="70" alt="Cirquee">
+      <% } else { %>
+        <img src="https://res.cloudinary.com/dgzorrtut/image/upload/v1754568196/Cirquee_reqlcv.png" width="70" height="70" alt="Cirquee">
+        <% } %>
+    </a>
     <button
       class="navbar-toggler"
       type="button"

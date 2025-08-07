@@ -4,17 +4,12 @@
   <footer class="footer bg-light py-3 mt-5">
     <% } %>
     <div class="container">
-      <% if(currentUser && currentUser.isDark) { %> 
-      <span class="text-muted footing-copy"
-      <% } else { %>
-        <span class="text-dark footing-copy"
-        <% } %>  
-        >&copy; Community Rises 2025
+        <span class="footing-copy <%= currentUser && currentUser.isDark ? "text-light" : "text-dark" %>" 
+        >
         </span>
-        <span style="float: right"
+        <span class="<%= currentUser && currentUser.isDark ? "text-light" : "text-dark" %>" style="float: right"
           >Have an idea or encountered difficulties?
-          <a href="/suggestions">Go Here!</a> or check the latest
-          <a href="/logs">Updates</a></span>
+          <a href="/suggestions">Check this out!</a>
     </div>
   </footer>
 </footer>
@@ -22,5 +17,5 @@
   const span = document.querySelector(".footing-copy")
   let date = new Date();
   let year = date.getFullYear();
-  span.innerText = `© Community Rises ${year}`
+  span.innerText = `© Cirquee ${year}`
 </script>

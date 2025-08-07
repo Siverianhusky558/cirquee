@@ -42,27 +42,42 @@ const codeContainer = document.querySelector(".code");
 const codeNumber = document.getElementById("code-number");
 const codeInput = document.getElementById("code-input");
 const verifyBtn = document.getElementById("verify");
+const credentialsContainer = document.querySelector(".check-again");
+// Loading Animation for Login & Register Forms
+const animationContainer = document.querySelector(".body");
+
 
 if (registerForm == null) {
 } else {
   codeInput.value = "";
-  registerForm.addEventListener("submit", (form) => {
-    form.preventDefault();
-    codeContainer.classList.add("show");
-    generateCode();
-    verifyBtn.addEventListener("click", () => {
-      if (codeInput.value == codeNumber.innerText) {
-        registerForm.submit();
-      } else {
-        alert("Code entered is incorrect! Please try again.");
-      }
-    });
+  registerForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    if(registerForm.checkValidity()) {
+      generateCode();
+      codeContainer.classList.add("show");
+      verifyBtn.addEventListener("click", () => {
+        if (codeInput.value == codeNumber.innerText) {
+            animationContainer.classList.add("show");
+            let seconds = [
+              100, 300, 500, 700, 1000, 1200, 1600, 1800, 2000, 3000, 4000,
+            ];
+            setTimeout(
+              registerForm.submit(),
+              seconds[Math.floor(Math.random() * seconds.length)]
+            );
+        } else {
+          credentialsContainer.classList.add("show");
+          setTimeout(() => {
+            window.location.reload();
+          }, 3000);
+        }
+      });
+    }
   });
 }
 
 // Login Form Loading Animation
 const loginForm = document.getElementById("login-form");
-const animationContainer = document.querySelector(".body");
 
 if (loginForm == null) {
 } else {

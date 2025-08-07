@@ -7,51 +7,54 @@
 <h1 style="text-align: center">Latest Posts</h1>
 <% } %>
 <div style="height: 30px"></div>
-<% if(currentUser) {%> <% for(let post of posts) { %> <% if(currentUser &&
-currentUser.isDark) { %>
-<div
-  class="post-container card mb-3 bg-dark text-light"
-  style="box-shadow: 2px 2px 10px rgba(255, 0, 255, 0.5); transform: scale(0.8)"
->
-  <% } else { %>
-  <div
-    class="post-container card mb-3 bg-light text-dark"
-    style="
-      box-shadow: 2px 2px 10px rgba(255, 0, 255, 0.5);
-      transform: scale(0.8);
-    "
-  >
-    <% } %>
-    <a href="/users/<%= post.author._id %>"
-      ><img
-        style="width: 6rem; height: 6rem; border-radius: 50%"
-        src="<%= post.author.avatar[0].url %>"
-        alt=""
-    /></a>
-    <% if(post.images.length) { %>
-    <h4 style="display: inline"><%= post.author.username %> posted this!</h4>
-    <a href="/posts/<%= post._id %>"
-      ><img src="<%= post.images[0].url %>" class="index-post" alt=""
-    /></a>
-    <% } else { %>
-    <h4 style="display: inline"><%= post.author.username %> says:</h4>
-    <% } %>
-    <div class="card-body">
-      <p class="desc card-text"><%= post.description %></p>
-      <p class="card-text">
-        <small style="display: block" class="text-muted"
-          >Posted <%= moment(post.createdAt).fromNow() %>
-        </small>
-      </p>
-      <a
-        style="float: right"
-        href="/posts/<%= post._id %>"
-        class="btn btn-primary"
-        >Read More</a
-      >
-    </div>
-  </div>
-  <% } %> <% } %>
+<div class="flex-doer">
+  <% if(currentUser) { %> 
+    <% for(let post of posts) { %> 
+      <% if(currentUser && currentUser.isDark) { %>
+        <div
+          class="post-container card mb-3 bg-dark text-light"
+          style="box-shadow: 2px 2px 10px rgba(255, 0, 255, 0.5); transform: scale(0.8)"
+        >
+      <% } else { %>
+        <div
+          class="post-container card mb-3 bg-light text-dark"
+          style="
+            box-shadow: 2px 2px 10px rgba(255, 0, 255, 0.5);
+            transform: scale(0.8);
+          "
+        >
+      <% } %>
+        <a href="/users/<%= post.author._id %>">
+          <img
+            style="width: 6rem; height: 6rem; border-radius: 50%"
+            src="<%= post.author.avatar[0].url %>"
+            alt=""
+          />
+        </a>
+        <% if(post.images.length) { %>
+          <h4 style="display: inline"><%= post.author.username %> posted this!</h4>
+          <a href="/posts/<%= post._id %>">
+            <img src="<%= post.images[0].url %>" class="index-post" alt="" />
+          </a>
+        <% } else { %>
+          <h1 class="without-img"><%= post.author.username %> says:</h1>
+        <% } %>
+        <div class="card-body">
+          <p class="desc card-text"><%= post.description %></p>
+          <p class="card-text">
+            <small style="display: block" class="text-muted">
+              Posted <%= moment(post.createdAt).fromNow() %>
+            </small>
+          </p>
+          <a
+            style="float: right"
+            href="/posts/<%= post._id %>"
+            class="btn btn-primary"
+            >Read More</a>
+        </div>
+      </div>
+    <% } %> 
+  <% } %>
 
   <script>
     function isArabic(text) {
